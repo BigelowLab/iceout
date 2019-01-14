@@ -4,7 +4,7 @@
 \alias{plot_iceout}
 \title{Plot a single iceout dataset}
 \usage{
-plot_iceout(x = parse_iceout(), trend = "loess")
+plot_iceout(x = read_iceout()[[1]], trend = "loess")
 }
 \arguments{
 \item{x}{a list of iceout data}

@@ -28,13 +28,13 @@ read_sites <- function(filename = iceout_path('iceout_sites.csv')){
 #' @param trend charcater, if 'loess' then draw a loess fit on the data;
 #'     other values are ignored for now.
 #' @return ggplot2 object
-plot_iceout <- function(x = parse_iceout(), trend = 'loess'){
+plot_iceout <- function(x = read_iceout()[[1]], trend = 'loess'){
 	ggplot2::ggplot(x$data, ggplot2::aes(x = Date, y = DOY)) +
 	    ggplot2::xlab('Year') +
 	    ggplot2::geom_point(alpha = 0.2) +
 	    ggplot2::geom_smooth(method = 'loess') +
 	    ggplot2::ggtitle(sprintf("Iceout History for %s",x$longname)) +
-	    ggplot2::scale_y_continuous(name = "Iceout day",
+	    ggplot2::scale_y_continuous(name = "<<< earlier          Iceout Day          later >>>",
   			labels = function(b){ format(as.Date(paste("2018",b), format = "%Y %j"), "%b %d")})
 }
 
@@ -89,9 +89,9 @@ parse_iceout <- function(name = "Auburn", form = "tibble"){
 		   as.numeric(substr(ll, 4,5))/60 +
 		   as.numeric(substr(ll, 7,8))/3600
     lon <- 0 -
-    	   as.numeric(substr(ll, 10,11)) +
+    	   (as.numeric(substr(ll, 10,11)) +
 		   as.numeric(substr(ll, 13,14))/60 +
-		   as.numeric(substr(ll, 16,17))/3600
+		   as.numeric(substr(ll, 16,17))/3600)
     d <- txt[-seq_len(nhdr+1)]
     ix <- !grepl("\t", d)
     if (any(ix)) d[ix] <- paste0(d[ix], "\t")
@@ -105,4 +105,14 @@ parse_iceout <- function(name = "Auburn", form = "tibble"){
 		lon = lon,
 		lat = lat,
 		data = dat)
+}
+
+
+#' Read the prepared iceout data
+#'
+#' @export
+#' @param filename the name of the iceout_data.rds file
+#' @return a list of parsed iceout datasets
+read_iceout <- function(filename = iceout_path("iceout_data.rds")){
+    readRDS(filename)
 }
