@@ -7,10 +7,9 @@ iceout_uri <- function(){"https://me.water.usgs.gov/iceout_data"}
 #' Retrieve the data path for the package data
 #'
 #' @export
-#' @return charcater uri
+#' @return charcater path
 iceout_path <- function(...){
-    path = system.file("data", package = "iceout")
-    file.path(path, ...)
+    system.file("extdata", ..., package = "iceout")
 }
 
 #' Read the iceout_sites file that provides name, longname and location data
@@ -26,10 +25,11 @@ read_sites <- function(filename = iceout_path('iceout_sites.csv')){
 #'
 #' @export
 #' @param x a list of iceout data
-#' @param trend charcater, if 'loess' then draw a loess fit on the data. At this
-#'    time any othe
+#' @param trend charcater, if 'loess' then draw a loess fit on the data;
+#'     other values are ignored for now.
+#' @return ggplot2 object
 plot_iceout <- function(x = parse_iceout(), trend = 'loess'){
-	ggplot2::ggplot(x$data, aes(x = Date, y = DOY)) +
+	ggplot2::ggplot(x$data, ggplot2::aes(x = Date, y = DOY)) +
 	    ggplot2::xlab('Year') +
 	    ggplot2::geom_point(alpha = 0.2) +
 	    ggplot2::geom_smooth(method = 'loess') +
@@ -39,13 +39,17 @@ plot_iceout <- function(x = parse_iceout(), trend = 'loess'){
 }
 
 #' Fetch all of the data
+#'
+#' @export
 #' @param sites vector of site names (short names)
+#' @param dst_path the destuntion path to save the files
 #' @return vector of 0 = success, !0 = failure
-fetch_all <- function(sites = read_sites()$name){
+fetch_all <- function(sites = read_sites()$name,
+                      dst_path = "."){
     sapply(sites,
                  function(name) {
                      fname = sprintf("Data.%s.txt", name)
-                     DST = file.path(PATH,fname)
+                     DST = file.path(dst_path,fname)
                      SRC = file.path(URI, fname)
                      download.file(SRC, DST)
                  })
@@ -53,6 +57,7 @@ fetch_all <- function(sites = read_sites()$name){
 
 #' Parse one or more sites
 #'
+#' @export
 #' @param sites one or more site names (short name)
 #' @param return list of iceout lists
 parse_all <- function(sites = read_sites()$name){
@@ -62,15 +67,15 @@ parse_all <- function(sites = read_sites()$name){
                 }, simplify = FALSE)
 }
 
-
 #' Parse a single iceout file
 #'
+#' @export
 #' @param name the site name
-#' @param form either zoo or tibble (default)
+#' @param form character, just 'tibble' for now but possibly 'sf' in future
 #' @return list of iceout metadata and data in \code{form} form
-parse_iceout <- function(name = "Auburn", form = c("tibble", "zoo")[1]){
+parse_iceout <- function(name = "Auburn", form = "tibble"){
 
-	filename = file.path(PATH, sprintf("Data.%s.txt", name))
+	filename = iceout_path(sprintf("Data.%s.txt", name))
 	txt <- readLines(filename, encoding = 'latin1')
 	ix <- grep("YEAR", txt, fixed = TRUE)
 	nhdr <- ix[1]-1
@@ -94,7 +99,6 @@ parse_iceout <- function(name = "Auburn", form = c("tibble", "zoo")[1]){
 	                       na = c("", "NA", "NCIC")) %>%
 		dplyr::filter(!is.na(DOY)) %>%
 		dplyr::mutate(Date = as.Date(paste(Year, DOY), format = "%Y %j"))
-	if(tolower(form[1])=='zoo') dat <- zoo::zoo(dat$DOY, dat$Date)
 	list(name = name,
 		longname = longname,
 		observer = observer,
