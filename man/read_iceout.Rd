@@ -15,4 +15,3 @@ a list of parsed iceout datasets
 \description{
 Read the prepared iceout data
 }
-

@@ -6,10 +6,12 @@
 \usage{
 iceout_path(...)
 }
+\arguments{
+\item{...}{path elements}
+}
 \value{
 charcater path
 }
 \description{
 Retrieve the data path for the package data
 }
-

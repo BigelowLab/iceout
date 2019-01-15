@@ -15,4 +15,3 @@ tibble of site data
 \description{
 Read the iceout_sites file that provides name, longname and location data
 }
-

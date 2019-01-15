@@ -17,4 +17,3 @@ list of iceout metadata and data in \code{form} form
 \description{
 Parse a single iceout file
 }
-

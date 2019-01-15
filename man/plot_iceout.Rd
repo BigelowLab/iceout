@@ -18,4 +18,3 @@ ggplot2 object
 \description{
 Plot a single iceout dataset
 }
-

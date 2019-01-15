@@ -8,10 +8,10 @@ parse_all(sites = read_sites()$name)
 }
 \arguments{
 \item{sites}{one or more site names (short name)}
-
-\item{return}{list of iceout lists}
+}
+\value{
+list of iceout lists
 }
 \description{
 Parse one or more sites
 }
-

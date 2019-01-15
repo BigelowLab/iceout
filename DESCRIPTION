@@ -1,20 +1,35 @@
 Package: iceout
-Title: iceout
+Title: Retrieve and Process 'Ice-out' Data for New England and Minnesota Inland Bodies of Water
 Description: Provides convenient access to New England iceout data from
-    \url{https://me.water.usgs.gov/iceout_data}.
-Version: 0.1
+    <https://me.water.usgs.gov/iceout_data> and Minnesota iceout data from 
+    <https://www.dnr.state.mn.us/ice_out/index.html?year=1843> along with 
+    extra Maine state data from <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>.
+Version: 0.1.0
 Depends:
     R (>= 3.0)
 Imports:
     magrittr,
     dplyr,
     readr,
-    ggplot2
+    ggplot2,
+    utils,
+    rvest,
+    xml2,
+    jsonlite,
+    httr
+Encoding: UTF-8
 Maintainer: Ben Tupper <btupper@bigelow.org>
 Author: Ben Tupper <btupper@bigelow.org>
 License: MIT + file LICENSE
 Collate:
     iceout-package.R
+    aaa.R
     iceout.R
+    iceout-maine.R
+    iceout-mn.R
+    datasets.R
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
+Suggests: 
+    testthat

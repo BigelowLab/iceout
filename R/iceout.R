@@ -6,8 +6,9 @@ iceout_uri <- function(){"https://me.water.usgs.gov/iceout_data"}
 
 #' Retrieve the data path for the package data
 #'
-#' @export
+#' @param ... path elements
 #' @return charcater path
+#' @export
 iceout_path <- function(...){
     system.file("extdata", ..., package = "iceout")
 }
@@ -50,7 +51,7 @@ fetch_all <- function(sites = read_sites()$name,
                  function(name) {
                      fname = sprintf("Data.%s.txt", name)
                      DST = file.path(dst_path,fname)
-                     SRC = file.path(URI, fname)
+                     SRC = file.path(iceout_uri(), fname)
                      download.file(SRC, DST)
                  })
 }
@@ -59,7 +60,7 @@ fetch_all <- function(sites = read_sites()$name,
 #'
 #' @export
 #' @param sites one or more site names (short name)
-#' @param return list of iceout lists
+#' @return list of iceout lists
 parse_all <- function(sites = read_sites()$name){
     sapply(sites,
                  function(name){
@@ -81,8 +82,8 @@ parse_iceout <- function(name = "Auburn", form = "tibble"){
 	nhdr <- ix[1]-1
 	hdr <- txt[seq_len(nhdr)]
 	longname = gsub("Ice-out dates for ", "", hdr[1], fixed = TRUE)
-	observer = gsub("Observers.—", "", hdr[3], fixed = TRUE)
-	n1 <- "Location of Lake.—Lat. "
+	observer = gsub("Observers.-", "", hdr[3], fixed = TRUE)
+	n1 <- "Location of Lake.-Lat. "
 	n2 <- ", long. "
 	ll <- sub(n2, "", sub(n1, "", hdr[2], fixed = TRUE), fixed = TRUE)
 	lat <- as.numeric(substr(ll, 1,2)) +

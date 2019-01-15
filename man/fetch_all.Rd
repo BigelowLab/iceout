@@ -17,4 +17,3 @@ vector of 0 = success, !0 = failure
 \description{
 Fetch all of the data
 }
-
