@@ -19,5 +19,9 @@ the \href{https://www.dnr.state.mn.us/ice_out/index.html?year=1843}{MDNR} along 
 extra Maine state data from \href{https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml}{MDACF}.
 }
 \seealso{
-\url{https://me.water.usgs.gov/iceout_data}
+\itemize{
+\item \url{https://me.water.usgs.gov/iceout_data};
+\item \url{https://www.dnr.state.mn.us/ice_out/index.html?year=1843};
+\item \url{https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml}
+}
 }

@@ -12,7 +12,10 @@
 #' the [MDNR](https://www.dnr.state.mn.us/ice_out/index.html?year=1843) along with
 #' extra Maine state data from [MDACF](https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml).
 #'
-#' @seealso <https://me.water.usgs.gov/iceout_data>
+#' @seealso
+#' - <https://me.water.usgs.gov/iceout_data>;
+#' - <https://www.dnr.state.mn.us/ice_out/index.html?year=1843>;
+#' - <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>
 #' @name iceout
 #' @aliases umoos iceout-package
 #' @importFrom magrittr %>%
