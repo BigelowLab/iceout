@@ -158,3 +158,63 @@ plot_iceout("mn", "Minnesota", "Minnewaska")
 ```
 
 <img src="man/figures/README-mn-vis-1.png" width="100%" />
+
+### Exploring USGS Data
+
+Where are the USGS study lakes?
+
+``` r
+library(ggrepel)
+library(hrbrthemes) # requires github/hrbrmstr/hrbrthemes ?(for the dark theme)
+library(worldtilegrid) # requires github/hrbrmstr/worldtilegrid (for the theme cleaner)
+
+# get ME+NH+MASS map
+maps::map("state", ".", exact = FALSE, plot = FALSE, fill = TRUE) %>%
+  fortify() %>%
+  filter(region %in%  c("maine", "new hampshire", "massachusetts")) %>%
+  as_tibble() -> st
+
+ggplot() +
+  geom_polygon(
+    data = st, aes(long, lat, group=group),
+    fill = ft_cols$slate, color = "white", size = 0.125
+  ) +
+  geom_label_repel(
+    data = distinct(usgs_iceout, state, body_name, lon, lat), 
+    aes(lon, lat, label=body_name), size=3
+  ) +
+  coord_quickmap() +
+  theme_ft_rc(grid="") +
+  worldtilegrid::theme_enhance_wtg()
+```
+
+<img src="man/figures/README-usgs-explore-01-1.png" width="100%" />
+
+``` r
+filter(usgs_iceout, body_name == "Rangeley") %>% 
+  pull(lat) %>% 
+  unique()  %>% 
+  round(2) -> focused_lat
+
+filter(usgs_iceout, lat >= focused_lat) %>% 
+  mutate(
+    dm = sprintf(
+      "2020-%02s-%02s", # use a leap year
+      lubridate::month(date),
+      lubridate::day(date)
+    ),
+    dm = as.Date(dm)
+  )%>% 
+  ggplot(aes(date, dm, group=body_name, color=body_name)) +
+  geom_smooth(method = 'loess', size=0.25, se = FALSE) +
+  geom_point(size=0.75, alpha=1/3) +
+  labs(
+    x = NULL, y = "Ice-out Month/Day", color = NULL,
+    title = sprintf(
+      "Ice-out Trends for lakes at latitude %s and higher", focused_lat
+    )
+  ) +
+  theme_ft_rc(grid="Y")
+```
+
+<img src="man/figures/README-usgs-explore-02-1.png" width="100%" />
