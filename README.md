@@ -53,7 +53,9 @@ The following datasets are provided:
 You can install the development version of `iceout` via:
 
 ``` r
-devtools::install_github("BigelowLab/iceout")
+devtools::install_github("hrbrmstr/iceout") # this fork
+# or
+devtools::install_github("BigelowLab/iceout") # the original
 ```
 
 ## Usage
