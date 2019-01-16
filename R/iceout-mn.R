@@ -54,6 +54,7 @@ mn_get_iceout_dates <- safely(.mn_get_iceout_dates)
 #'       better off doing `data(mn_iceout)` vs hitting up the MDNR servers.
 #' @return data frame (tibble) consisting of `source`, `body_name` and `iceout_date`
 #' @export
+#' @family dataset builders
 #' @examples \dontrun{
 #' mn_iceout <- read_mn_iceout_data()
 #' }

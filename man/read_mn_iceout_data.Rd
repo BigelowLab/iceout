@@ -29,3 +29,11 @@ better off doing \code{data(mn_iceout)} vs hitting up the MDNR servers.
 mn_iceout <- read_mn_iceout_data()
 }
 }
+\seealso{
+Other dataset builders: \code{\link{fetch_all}},
+  \code{\link{iceout_path}}, \code{\link{parse_all}},
+  \code{\link{parse_iceout}}, \code{\link{read_iceout}},
+  \code{\link{read_maine_iceout_data}},
+  \code{\link{read_sites}}
+}
+\concept{dataset builders}

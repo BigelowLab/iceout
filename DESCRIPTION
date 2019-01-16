@@ -18,6 +18,7 @@ Imports:
     rvest,
     xml2,
     jsonlite,
+    lubridate,
     httr
 Encoding: UTF-8
 Maintainer: Ben Tupper <btupper@bigelow.org>
@@ -30,6 +31,7 @@ Collate:
     iceout-maine.R
     iceout-mn.R
     datasets.R
+    vis.R
 LazyData: true
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)

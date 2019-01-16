@@ -68,14 +68,7 @@ library(tidyverse)
 packageVersion("iceout")
 ```
 
-```{r deprecated-read}
-# likely being deprecated
-io <- read_iceout()
-```
-
-```{r deprecated-plot}
-plot_iceout()
-```
+### USGS Data
 
 ```{r usgs}
 data(usgs_iceout)
@@ -83,14 +76,42 @@ data(usgs_iceout)
 usgs_iceout
 ```
 
+### Maine state curated data
+
 ```{r me}
 data(me_iceout)
 
 me_iceout
 ```
 
+### Minnesota state curated data
+
 ```{r mn}
 data(mn_iceout)
 
 mn_iceout
 ```
+
+### Visualization
+
+USGS
+
+```{r usgs-vis}
+plot_iceout("usgs", "New Hampshire", "First.Conn")
+```
+
+Maine-curated
+
+```{r maine-vis}
+plot_iceout("me", "Maine", "Long Pond", town = "Belgrade")
+```
+
+Minnesota-curated
+
+```{r mn-vis}
+plot_iceout("mn", "Minnesota", "Minnewaska")
+```
+
+
+
+

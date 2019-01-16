@@ -14,6 +14,7 @@
 #' @return data frame (tibble) consisting of `state`, `town`, `body_name`, `date`,
 #'         `year`, `doy`
 #' @export
+#' @family dataset builders
 #' @examples \dontrun{
 #' me_iceout <- read_maine_iceout_data()
 #' }

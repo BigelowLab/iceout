@@ -20,11 +20,13 @@
 #' @aliases umoos iceout-package
 #' @importFrom magrittr %>%
 #' @importFrom readr read_csv
-#' @importFrom ggplot2 ggplot xlab geom_point geom_smooth ggtitle scale_y_continuous aes
+#' @importFrom ggplot2 ggplot xlab geom_point geom_smooth ggtitle scale_y_continuous aes labs
 #' @importFrom dplyr filter mutate
 #' @importFrom utils download.file globalVariables
 #' @importFrom xml2 read_html
 #' @importFrom rvest html_node html_table
 #' @importFrom httr GET content stop_for_status
 #' @importFrom jsonlite fromJSON
+#' @importFrom lubridate year yday
+#' @importFrom utils data
 NULL

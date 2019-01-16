@@ -46,7 +46,7 @@ NULL
 #' for New England
 #'
 #' - `state` <chr> (state lake is in)
-#' - `name` <chr> (short lake namne)
+#' - `body_name` <chr> (short lake namne)
 #' - `long_name` <chr> (long lake name)
 #' - `lat`/`lon` <dbl> (coordinates)
 #' - `year` <int> (ice-out year)

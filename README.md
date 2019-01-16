@@ -67,36 +67,29 @@ packageVersion("iceout")
 #> [1] '0.1.0'
 ```
 
-``` r
-# likely being deprecated
-io <- read_iceout()
-```
-
-``` r
-plot_iceout()
-```
-
-<img src="man/figures/README-deprecated-plot-1.png" width="100%" />
+### USGS Data
 
 ``` r
 data(usgs_iceout)
 
 usgs_iceout
 #> # A tibble: 3,372 x 9
-#>    state name   long_name   lon   lat  year   doy date       observer      
-#>    <chr> <chr>  <chr>     <dbl> <dbl> <dbl> <dbl> <date>     <chr>         
-#>  1 Maine Auburn Lake Aub… -70.2  44.1  2005   110 2005-04-20 Auburn Water …
-#>  2 Maine Auburn Lake Aub… -70.2  44.1  2004   105 2004-04-14 Auburn Water …
-#>  3 Maine Auburn Lake Aub… -70.2  44.1  2003   116 2003-04-26 Auburn Water …
-#>  4 Maine Auburn Lake Aub… -70.2  44.1  2002    94 2002-04-04 Auburn Water …
-#>  5 Maine Auburn Lake Aub… -70.2  44.1  2001   118 2001-04-28 Auburn Water …
-#>  6 Maine Auburn Lake Aub… -70.2  44.1  2000    97 2000-04-06 Auburn Water …
-#>  7 Maine Auburn Lake Aub… -70.2  44.1  1999    97 1999-04-07 Auburn Water …
-#>  8 Maine Auburn Lake Aub… -70.2  44.1  1998    98 1998-04-08 Auburn Water …
-#>  9 Maine Auburn Lake Aub… -70.2  44.1  1997   114 1997-04-24 Auburn Water …
-#> 10 Maine Auburn Lake Aub… -70.2  44.1  1996   100 1996-04-09 Auburn Water …
+#>    state body_name long_name    lon   lat  year   doy date       observer  
+#>    <chr> <chr>     <chr>      <dbl> <dbl> <dbl> <dbl> <date>     <chr>     
+#>  1 Maine Auburn    Lake Aubu… -70.2  44.1  2005   110 2005-04-20 Auburn Wa…
+#>  2 Maine Auburn    Lake Aubu… -70.2  44.1  2004   105 2004-04-14 Auburn Wa…
+#>  3 Maine Auburn    Lake Aubu… -70.2  44.1  2003   116 2003-04-26 Auburn Wa…
+#>  4 Maine Auburn    Lake Aubu… -70.2  44.1  2002    94 2002-04-04 Auburn Wa…
+#>  5 Maine Auburn    Lake Aubu… -70.2  44.1  2001   118 2001-04-28 Auburn Wa…
+#>  6 Maine Auburn    Lake Aubu… -70.2  44.1  2000    97 2000-04-06 Auburn Wa…
+#>  7 Maine Auburn    Lake Aubu… -70.2  44.1  1999    97 1999-04-07 Auburn Wa…
+#>  8 Maine Auburn    Lake Aubu… -70.2  44.1  1998    98 1998-04-08 Auburn Wa…
+#>  9 Maine Auburn    Lake Aubu… -70.2  44.1  1997   114 1997-04-24 Auburn Wa…
+#> 10 Maine Auburn    Lake Aubu… -70.2  44.1  1996   100 1996-04-09 Auburn Wa…
 #> # … with 3,362 more rows
 ```
+
+### Maine state curated data
 
 ``` r
 data(me_iceout)
@@ -118,6 +111,8 @@ me_iceout
 #> # … with 1,121 more rows
 ```
 
+### Minnesota state curated data
+
 ``` r
 data(mn_iceout)
 
@@ -137,3 +132,29 @@ mn_iceout
 #> 10 Minn… Minnewawa 1983-04-24  1983   114  46.7 -93.3 0100… ""       MNDNR…
 #> # … with 10,251 more rows
 ```
+
+### Visualization
+
+USGS
+
+``` r
+plot_iceout("usgs", "New Hampshire", "First.Conn")
+```
+
+<img src="man/figures/README-usgs-vis-1.png" width="100%" />
+
+Maine-curated
+
+``` r
+plot_iceout("me", "Maine", "Long Pond", town = "Belgrade")
+```
+
+<img src="man/figures/README-maine-vis-1.png" width="100%" />
+
+Minnesota-curated
+
+``` r
+plot_iceout("mn", "Minnesota", "Minnewaska")
+```
+
+<img src="man/figures/README-mn-vis-1.png" width="100%" />

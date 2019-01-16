@@ -1,4 +1,4 @@
-utils::globalVariables(c("DOY", "Year", "Date"))
+utils::globalVariables(c("DOY", "Year", "Date", "doy"))
 
 # Less cool counterparts to purrr's side-effect capture-rs
 #

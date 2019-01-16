@@ -13,7 +13,7 @@ This dataset contains the USGS historical ice-out data
 for New England
 \itemize{
 \item \code{state} <chr> (state lake is in)
-\item \code{name} <chr> (short lake namne)
+\item \code{body_name} <chr> (short lake namne)
 \item \code{long_name} <chr> (long lake name)
 \item \code{lat}/\code{lon} <dbl> (coordinates)
 \item \code{year} <int> (ice-out year)

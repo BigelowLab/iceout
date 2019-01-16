@@ -2,41 +2,26 @@
 #'
 #' @export
 #' @return charcater uri
-iceout_uri <- function(){"https://me.water.usgs.gov/iceout_data"}
+iceout_uri <- "https://me.water.usgs.gov/iceout_data"
 
 #' Retrieve the data path for the package data
 #'
 #' @param ... path elements
 #' @return charcater path
+#' @family dataset builders
 #' @export
 iceout_path <- function(...){
-    system.file("extdata", ..., package = "iceout")
+  system.file("extdata", ..., package = "iceout")
 }
 
 #' Read the iceout_sites file that provides name, longname and location data
 #'
 #' @export
 #' @param filename the fully qualified filename
+#' @family dataset builders
 #' @return tibble of site data
 read_sites <- function(filename = iceout_path('iceout_sites.csv')){
 	readr::read_csv(filename)
-}
-
-#' Plot a single iceout dataset
-#'
-#' @export
-#' @param x a list of iceout data
-#' @param trend charcater, if 'loess' then draw a loess fit on the data;
-#'     other values are ignored for now.
-#' @return ggplot2 object
-plot_iceout <- function(x = read_iceout()[[1]], trend = 'loess'){
-	ggplot2::ggplot(x$data, ggplot2::aes(x = Date, y = DOY)) +
-	    ggplot2::xlab('Year') +
-	    ggplot2::geom_point(alpha = 0.2) +
-	    ggplot2::geom_smooth(method = 'loess') +
-	    ggplot2::ggtitle(sprintf("Iceout History for %s",x$longname)) +
-	    ggplot2::scale_y_continuous(name = "<<< earlier          Iceout Day          later >>>",
-  			labels = function(b){ format(as.Date(paste("2018",b), format = "%Y %j"), "%b %d")})
 }
 
 #' Fetch all of the data
@@ -44,6 +29,7 @@ plot_iceout <- function(x = read_iceout()[[1]], trend = 'loess'){
 #' @export
 #' @param sites vector of site names (short names)
 #' @param dst_path the destuntion path to save the files
+#' @family dataset builders
 #' @return vector of 0 = success, !0 = failure
 fetch_all <- function(sites = read_sites()$name,
                       dst_path = "."){
@@ -51,7 +37,7 @@ fetch_all <- function(sites = read_sites()$name,
                  function(name) {
                      fname = sprintf("Data.%s.txt", name)
                      DST = file.path(dst_path,fname)
-                     SRC = file.path(iceout_uri(), fname)
+                     SRC = file.path(iceout_uri, fname)
                      download.file(SRC, DST)
                  })
 }
@@ -59,6 +45,7 @@ fetch_all <- function(sites = read_sites()$name,
 #' Parse one or more sites
 #'
 #' @export
+#' @family dataset builders
 #' @param sites one or more site names (short name)
 #' @return list of iceout lists
 parse_all <- function(sites = read_sites()$name){
@@ -73,6 +60,7 @@ parse_all <- function(sites = read_sites()$name){
 #' @export
 #' @param name the site name
 #' @param form character, just 'tibble' for now but possibly 'sf' in future
+#' @family dataset builders
 #' @return list of iceout metadata and data in \code{form} form
 parse_iceout <- function(name = "Auburn", form = "tibble"){
 
@@ -113,6 +101,7 @@ parse_iceout <- function(name = "Auburn", form = "tibble"){
 #'
 #' @export
 #' @param filename the name of the iceout_data.rds file
+#' @family dataset builders
 #' @return a list of parsed iceout datasets
 read_iceout <- function(filename = iceout_path("iceout_data.rds")){
     readRDS(filename)

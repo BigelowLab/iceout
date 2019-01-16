@@ -15,3 +15,12 @@ charcater path
 \description{
 Retrieve the data path for the package data
 }
+\seealso{
+Other dataset builders: \code{\link{fetch_all}},
+  \code{\link{parse_all}}, \code{\link{parse_iceout}},
+  \code{\link{read_iceout}},
+  \code{\link{read_maine_iceout_data}},
+  \code{\link{read_mn_iceout_data}},
+  \code{\link{read_sites}}
+}
+\concept{dataset builders}

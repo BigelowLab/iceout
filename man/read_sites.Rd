@@ -15,3 +15,11 @@ tibble of site data
 \description{
 Read the iceout_sites file that provides name, longname and location data
 }
+\seealso{
+Other dataset builders: \code{\link{fetch_all}},
+  \code{\link{iceout_path}}, \code{\link{parse_all}},
+  \code{\link{parse_iceout}}, \code{\link{read_iceout}},
+  \code{\link{read_maine_iceout_data}},
+  \code{\link{read_mn_iceout_data}}
+}
+\concept{dataset builders}
