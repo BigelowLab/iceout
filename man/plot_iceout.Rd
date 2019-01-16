@@ -29,3 +29,8 @@ ggplot2 object
 \description{
 Plot a single iceout dataset
 }
+\examples{
+plot_iceout("usgs", "New Hampshire", "First.Conn")
+plot_iceout("me", "Maine", "Long Pond", town = "Belgrade")
+plot_iceout("mn", "Minnesota", "Minnewaska")
+}

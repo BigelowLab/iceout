@@ -11,6 +11,10 @@
 #'        this parameter must be specified.
 #' @param method,formula,... see [ggplot2::geom_smooth()]
 #' @return ggplot2 object
+#' @examples
+#' plot_iceout("usgs", "New Hampshire", "First.Conn")
+#' plot_iceout("me", "Maine", "Long Pond", town = "Belgrade")
+#' plot_iceout("mn", "Minnesota", "Minnewaska")
 plot_iceout <- function(dataset = c("usgs", "me", "mn"),
                         state = "Maine", body_name = "Auburn", town = NULL,
                         method = 'loess', formula = y ~ x, ...) {
