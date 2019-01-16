@@ -35,3 +35,28 @@ NULL
 #' @note Last updated 2019-01-15.
 #' @format A data frame with 19,261 rows and 9 variables
 NULL
+
+#' @title USGS Lake Ice-Out Data for New England
+#' @description This dataset contains the USGS historical ice-out data
+#' for New England
+#'
+#' - `state` <chr> (state lake is in)
+#' - `name` <chr> (short lake namne)
+#' - `long_name` <chr> (long lake name)
+#' - `lat`/`lon` <dbl> (coordinates)
+#' - `year` <Date> (ice-out year)
+#' - `doy` <Date> (ice-out day of year)
+#' - `date` <Date> (ice-out date)
+#' - `observer` <chr> (recording person/institution)
+#'
+#' @docType data
+#' @note Umbagog lake spans New Hampshire & Maine and is in the data
+#'       frame under both states.
+#' @keywords datasets
+#' @name usgs_iceout
+#' @references <https://me.water.usgs.gov/iceout_data/>;
+#'             <https://me.water.usgs.gov/iceout.html>
+#' @usage data(usgs_iceout)
+#' @note Last updated 2019-01-15.
+#' @format A data frame with 3,372 rows and 9 variables
+NULL

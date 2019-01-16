@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-![](man/figures/iceout-logo.png)
+<img src="man/figures/iceout-logo.png" width="25%"/>
 
 # iceout
 
@@ -10,7 +10,9 @@ Bodies of Water
 
 ## Description
 
-Provides convenient access to New England iceout data from
+Lake ice-out dates, or the dates of ice break-up, are the annual dates
+in spring when winter ice cover leaves a lake. Methods are provides to
+enable convenient access to New England iceout data from
 <https://me.water.usgs.gov/iceout_data> and Minnesota iceout data from
 <https://www.dnr.state.mn.us/ice_out/index.html?year=1843> along with
 extra Maine state data from
@@ -42,6 +44,8 @@ The following datasets are provided:
     `data(me_iceout)`)
   - `mn_iceout`: Minnesota state-level data (1843-present) (use-via
     `data(mn_iceout)`)
+  - `usgs_iceout`: USGS Lake Ice-Out Data for New England (1807-2005)
+    (use-via `data(usgs_iceout)`)
 
 ## Installation
 
@@ -63,6 +67,7 @@ packageVersion("iceout")
 ```
 
 ``` r
+# likely being deprecated
 io <- read_iceout()
 ```
 
@@ -70,7 +75,27 @@ io <- read_iceout()
 plot_iceout()
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-deprecated-plot-1.png" width="100%" />
+
+``` r
+data(usgs_iceout)
+
+usgs_iceout
+#> # A tibble: 3,372 x 9
+#>    state name   long_name   lon   lat  year   doy date       observer      
+#>    <chr> <chr>  <chr>     <dbl> <dbl> <dbl> <dbl> <date>     <chr>         
+#>  1 Maine Auburn Lake Aub… -70.2  44.1  2005   110 2005-04-20 Auburn Water …
+#>  2 Maine Auburn Lake Aub… -70.2  44.1  2004   105 2004-04-14 Auburn Water …
+#>  3 Maine Auburn Lake Aub… -70.2  44.1  2003   116 2003-04-26 Auburn Water …
+#>  4 Maine Auburn Lake Aub… -70.2  44.1  2002    94 2002-04-04 Auburn Water …
+#>  5 Maine Auburn Lake Aub… -70.2  44.1  2001   118 2001-04-28 Auburn Water …
+#>  6 Maine Auburn Lake Aub… -70.2  44.1  2000    97 2000-04-06 Auburn Water …
+#>  7 Maine Auburn Lake Aub… -70.2  44.1  1999    97 1999-04-07 Auburn Water …
+#>  8 Maine Auburn Lake Aub… -70.2  44.1  1998    98 1998-04-08 Auburn Water …
+#>  9 Maine Auburn Lake Aub… -70.2  44.1  1997   114 1997-04-24 Auburn Water …
+#> 10 Maine Auburn Lake Aub… -70.2  44.1  1996   100 1996-04-09 Auburn Water …
+#> # … with 3,362 more rows
+```
 
 ``` r
 data(me_iceout)

@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
   warning = FALSE
 )
 ```
-![](man/figures/iceout-logo.png)
+<img src="man/figures/iceout-logo.png" width="25%"/>
 
 # iceout
 
@@ -25,10 +25,7 @@ Retrieve and Process 'Ice-out' Data for New England and Minnesota Inland Bodies 
 
 ## Description
 
-Provides convenient access to New England iceout data from
-<https://me.water.usgs.gov/iceout_data> and Minnesota iceout data from 
-<https://www.dnr.state.mn.us/ice_out/index.html?year=1843> along with 
-extra Maine state data from <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>.
+Lake ice-out dates, or the dates of ice break-up, are the annual dates in spring when winter ice cover leaves a lake. Methods are provides to enable convenient access to New England iceout data from <https://me.water.usgs.gov/iceout_data> and Minnesota iceout data from <https://www.dnr.state.mn.us/ice_out/index.html?year=1843> along with extra Maine state data from <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>.
 
 ## Contents
 
@@ -51,6 +48,7 @@ The following datasets are provided:
 
 - `me_iceout`: Maine state-level data (2003-present) (use via `data(me_iceout)`)
 - `mn_iceout`: Minnesota state-level data (1843-present) (use-via `data(mn_iceout)`)
+- `usgs_iceout`: USGS Lake Ice-Out Data for New England (1807-2005) (use-via `data(usgs_iceout)`)
 
 ## Installation
 
@@ -70,21 +68,28 @@ library(tidyverse)
 packageVersion("iceout")
 ```
 
-```{r}
+```{r deprecated-read}
+# likely being deprecated
 io <- read_iceout()
 ```
 
-```{r}
+```{r deprecated-plot}
 plot_iceout()
 ```
 
-```{r}
+```{r usgs}
+data(usgs_iceout)
+
+usgs_iceout
+```
+
+```{r me}
 data(me_iceout)
 
 me_iceout
 ```
 
-```{r}
+```{r mn}
 data(mn_iceout)
 
 mn_iceout

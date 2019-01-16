@@ -6,7 +6,9 @@
 \alias{iceout-package}
 \title{Retrieve and Process 'Ice-out' Data for New England and Minnesota Inland Bodies of Water}
 \description{
-Provides convenient access to New England iceout data from
+Lake ice-out dates, or the dates of ice break-up, are the annual dates in spring
+when winter ice cover leaves a lake. Methods are provides to enable convenient access to
+New England iceout data from
 \url{https://me.water.usgs.gov/iceout_data} and Minnesota iceout data from
 \url{https://www.dnr.state.mn.us/ice_out/index.html?year=1843} along with
 extra Maine state data from \url{https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml}.
