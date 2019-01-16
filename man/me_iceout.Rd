@@ -4,7 +4,7 @@
 \name{me_iceout}
 \alias{me_iceout}
 \title{Maine Bureau of Parks & Lands State Ice-out Data}
-\format{A data frame with 1,131 rows and 3 variables}
+\format{A data frame with 1,131 rows and 6 variables}
 \usage{
 data(me_iceout)
 }
@@ -12,9 +12,12 @@ data(me_iceout)
 This dataset contains the Maine state-level historical data
 generated via \code{\link[=read_maine_iceout_data]{read_maine_iceout_data()}}.
 \itemize{
-\item \code{town} <chr>
-\item \code{body_name} <chr>
-\item \code{iceout_date} <Date>
+\item \code{state} <chr> (always Maine)
+\item \code{town} <chr> (town name)
+\item \code{body_name} <chr> (inland body of water name)
+\item \code{date} <Date> (iceout date)
+\item \code{year} <int> (ice-out year)
+\item \code{doy} <int> (ice-out day of year)
 }
 }
 \note{

@@ -4,7 +4,7 @@
 \name{mn_iceout}
 \alias{mn_iceout}
 \title{Minnesota Department of Natural Resources State Ice-out Data}
-\format{A data frame with 19,261 rows and 9 variables}
+\format{A data frame with 19,261 rows and 10 variables}
 \usage{
 data(mn_iceout)
 }
@@ -12,13 +12,15 @@ data(mn_iceout)
 This dataset contains the Minnesota state-level historical data
 generated via \code{\link[=read_mn_iceout_data]{read_mn_iceout_data()}}.
 \itemize{
-\item \code{source} <chr> (recording person/institution)
-\item \code{name} <chr> (inland body of water name)
-\item \code{date} <Date> (ice-out date)
-\item \code{comments} <chr> (field notes)
-\item \code{lat}/\code{lon} <dbl> (coordinates)
-\item \code{sentinel_lake} <int> (see site)
 \item \code{state} <chr> (always Minnesota)
+\item \code{body_name} <chr> (inland body of water name)
+\item \code{date} <Date> (ice-out date)
+\item \code{year} <int> (ice-out year)
+\item \code{doy} <int> (ice-out day of year)
+\item \code{lat}/\code{lon} <dbl> (coordinates)
+\item \code{id} <chr> (MDNR resource id)
+\item \code{comments} <chr> (field notes)
+\item \code{source} <chr> (recording person/institution)
 }
 }
 \note{

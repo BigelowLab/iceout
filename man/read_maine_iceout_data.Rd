@@ -7,7 +7,8 @@
 read_maine_iceout_data()
 }
 \value{
-data frame (tibble) consisting of \code{town}, \code{body_name} and \code{iceout_date}
+data frame (tibble) consisting of \code{state}, \code{town}, \code{body_name}, \code{date},
+\code{year}, \code{doy}
 }
 \description{
 The state of Maine maintains its own data (going back to 2003) of

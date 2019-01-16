@@ -2,9 +2,12 @@
 #' @description This dataset contains the Maine state-level historical data
 #' generated via [read_maine_iceout_data()].
 #'
-#' - `town` <chr>
-#' - `body_name` <chr>
-#' - `iceout_date` <Date>
+#' - `state` <chr> (always Maine)
+#' - `town` <chr> (town name)
+#' - `body_name` <chr> (inland body of water name)
+#' - `date` <Date> (iceout date)
+#' - `year` <int> (ice-out year)
+#' - `doy` <int> (ice-out day of year)
 #'
 #' @docType data
 #' @keywords datasets
@@ -12,20 +15,22 @@
 #' @references <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>
 #' @usage data(me_iceout)
 #' @note Last updated 2019-01-15.
-#' @format A data frame with 1,131 rows and 3 variables
+#' @format A data frame with 1,131 rows and 6 variables
 NULL
 
 #' @title Minnesota Department of Natural Resources State Ice-out Data
 #' @description This dataset contains the Minnesota state-level historical data
 #' generated via [read_mn_iceout_data()].
 #'
-#' - `source` <chr> (recording person/institution)
-#' - `name` <chr> (inland body of water name)
-#' - `date` <Date> (ice-out date)
-#' - `comments` <chr> (field notes)
-#' - `lat`/`lon` <dbl> (coordinates)
-#' - `sentinel_lake` <int> (see site)
 #' - `state` <chr> (always Minnesota)
+#' - `body_name` <chr> (inland body of water name)
+#' - `date` <Date> (ice-out date)
+#' - `year` <int> (ice-out year)
+#' - `doy` <int> (ice-out day of year)
+#' - `lat`/`lon` <dbl> (coordinates)
+#' - `id` <chr> (MDNR resource id)
+#' - `comments` <chr> (field notes)
+#' - `source` <chr> (recording person/institution)
 #'
 #' @docType data
 #' @keywords datasets
@@ -33,7 +38,7 @@ NULL
 #' @references <https://www.dnr.state.mn.us/ice_out/index.html?year=1843>
 #' @usage data(mn_iceout)
 #' @note Last updated 2019-01-15.
-#' @format A data frame with 19,261 rows and 9 variables
+#' @format A data frame with 19,261 rows and 10 variables
 NULL
 
 #' @title USGS Lake Ice-Out Data for New England
@@ -44,8 +49,8 @@ NULL
 #' - `name` <chr> (short lake namne)
 #' - `long_name` <chr> (long lake name)
 #' - `lat`/`lon` <dbl> (coordinates)
-#' - `year` <Date> (ice-out year)
-#' - `doy` <Date> (ice-out day of year)
+#' - `year` <int> (ice-out year)
+#' - `doy` <int> (ice-out day of year)
 #' - `date` <Date> (ice-out date)
 #' - `observer` <chr> (recording person/institution)
 #'

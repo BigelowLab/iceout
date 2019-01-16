@@ -11,7 +11,8 @@
 #'
 #' @note this takes a while and you are better off using `data(me_icout)` since
 #'       it will be updated each season. Only use this if you're impatient.
-#' @return data frame (tibble) consisting of `town`, `body_name` and `iceout_date`
+#' @return data frame (tibble) consisting of `state`, `town`, `body_name`, `date`,
+#'         `year`, `doy`
 #' @export
 #' @examples \dontrun{
 #' me_iceout <- read_maine_iceout_data()
@@ -28,11 +29,15 @@ read_maine_iceout_data <- function() {
       doc <- xml2::read_html(URL)
       iceout_tbl_node <- rvest::html_node(doc, xpath=".//table[1]")
       xdf <- rvest::html_table(iceout_tbl_node, trim=TRUE)
-      colnames(xdf) <- c("body_name", "town", "iceout_date")
-      xdf[["iceout_date"]] <- as.Date(xdf[["iceout_date"]], format="%m/%d/%Y")
-      xdf[,c("town", "body_name", "iceout_date")]
+      colnames(xdf) <- c("body_name", "town", "date")
+      xdf[["date"]] <- as.Date(xdf[["date"]], format="%m/%d/%Y")
+      xdf[,c("town", "body_name", "date")]
     })
   ) -> xdf
+
+  xdf$state <- "Maine"
+  xdf$year <- as.integer(lubridate::year(xdf$date))
+  xdf$doy <- as.integer(lubridate::yday(xdf$date))
 
   class(xdf) <- c("tbl_df", "tbl", "data.frame")
 
@@ -40,4 +45,4 @@ read_maine_iceout_data <- function() {
 
 }
 
-#usethis::use_data(me_iceout, internal=FALSE, overwrite=TRUE)
+# usethis::use_data(me_iceout, internal=FALSE, overwrite=TRUE)

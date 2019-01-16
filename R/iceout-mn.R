@@ -20,9 +20,16 @@
   vals[["lat"]] <- as.numeric(out[["result"]][["lat"]])
   vals[["lon"]] <- as.numeric(out[["result"]][["lon"]])
   vals[["id"]] <- out[["result"]][["id"]]
-  vals[["sentinel_lake"]] <- out[["result"]][["sentinel_lake"]]
+  # vals[["sentinel_lake"]] <- out[["result"]][["sentinel_lake"]]
   vals[["state"]] <- "Minnesota"
   vals[["date"]] <- as.Date(vals[["date"]])
+
+  vals$year <- as.integer(lubridate::year(vals$date))
+  vals$doy <- as.integer(lubridate::yday(vals$date))
+
+  vals <- vals[,c("state", "body_name", "date", "year",
+                  "doy", "lat", "lon", "id", "comments", "source")]
+
 
   class(vals) <- c("tbl_df", "tbl", "data.frame")
 
@@ -101,7 +108,7 @@ read_mn_iceout_data <- function() {
 }
 
 
-#usethis::use_data(mn_iceout, internal=FALSE, overwrite=TRUE)
+# usethis::use_data(mn_iceout, internal=FALSE, overwrite=TRUE)
 
 
 

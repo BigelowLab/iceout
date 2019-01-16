@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src="man/figures/iceout-logo.png" width="25%"/>
+<img src="man/figures/iceout-logo.png" width="25%" />
 
 # iceout
 
@@ -101,19 +101,19 @@ usgs_iceout
 data(me_iceout)
 
 me_iceout
-#> # A tibble: 1,131 x 3
-#>    town         body_name            iceout_date
-#>    <chr>        <chr>                <date>     
-#>  1 Jackman      Big Wood Pond        2003-05-03 
-#>  2 China        China Lake           2003-04-22 
-#>  3 Winthrop     Cobbossee Lake       2003-04-22 
-#>  4 Gray         Crystal Lake         2003-04-21 
-#>  5 Jefferson    Damariscotta Lake    2003-04-16 
-#>  6 Eagle Lake   Eagle Lake           2003-05-10 
-#>  7 Danforth     East Grand Lake      2003-05-10 
-#>  8 Ellsworth    Ellsworth area lakes 2003-04-28 
-#>  9 Embden       Embden Pond          2003-04-30 
-#> 10 East Machias Gardner Lake         2003-04-27 
+#> # A tibble: 1,131 x 6
+#>    state town         body_name            date        year   doy
+#>    <chr> <chr>        <chr>                <date>     <int> <int>
+#>  1 Maine Jackman      Big Wood Pond        2003-05-03  2003   123
+#>  2 Maine China        China Lake           2003-04-22  2003   112
+#>  3 Maine Winthrop     Cobbossee Lake       2003-04-22  2003   112
+#>  4 Maine Gray         Crystal Lake         2003-04-21  2003   111
+#>  5 Maine Jefferson    Damariscotta Lake    2003-04-16  2003   106
+#>  6 Maine Eagle Lake   Eagle Lake           2003-05-10  2003   130
+#>  7 Maine Danforth     East Grand Lake      2003-05-10  2003   130
+#>  8 Maine Ellsworth    Ellsworth area lakes 2003-04-28  2003   118
+#>  9 Maine Embden       Embden Pond          2003-04-30  2003   120
+#> 10 Maine East Machias Gardner Lake         2003-04-27  2003   117
 #> # … with 1,121 more rows
 ```
 
@@ -121,18 +121,18 @@ me_iceout
 data(mn_iceout)
 
 mn_iceout
-#> # A tibble: 10,261 x 9
-#>    source  date       comments  name    lat   lon id    sentinel_lake state
-#>    <chr>   <date>     <chr>     <chr> <dbl> <dbl> <chr>         <int> <chr>
-#>  1 MNDNR-… 1986-04-16 ""        Pine   46.2 -93.1 0100…             0 Minn…
-#>  2 MNDNR-… 1986-04-16 Unknown   Pine   46.2 -93.1 0100…             0 Minn…
-#>  3 MNDNR-… 1998-04-04 ""        Pine   46.2 -93.1 0100…             0 Minn…
-#>  4 MNPCA   2014-04-28 No ice v… Pine   46.2 -93.1 0100…             0 Minn…
-#>  5 MNPCA   2017-04-01 ""        Pine   46.2 -93.1 0100…             0 Minn…
-#>  6 MNPCA   2018-05-01 ""        Pine   46.2 -93.1 0100…             0 Minn…
-#>  7 MNPCA   1980-04-20 ""        Minn…  46.7 -93.3 0100…             0 Minn…
-#>  8 MNPCA   1981-04-06 ""        Minn…  46.7 -93.3 0100…             0 Minn…
-#>  9 MNPCA   1982-04-25 ""        Minn…  46.7 -93.3 0100…             0 Minn…
-#> 10 MNDNR-… 1983-04-24 ""        Minn…  46.7 -93.3 0100…             0 Minn…
+#> # A tibble: 10,261 x 10
+#>    state body_name date        year   doy   lat   lon id    comments source
+#>    <chr> <chr>     <date>     <int> <int> <dbl> <dbl> <chr> <chr>    <chr> 
+#>  1 Minn… Pine      1986-04-16  1986   106  46.2 -93.1 0100… ""       MNDNR…
+#>  2 Minn… Pine      1986-04-16  1986   106  46.2 -93.1 0100… Unknown  MNDNR…
+#>  3 Minn… Pine      1998-04-04  1998    94  46.2 -93.1 0100… ""       MNDNR…
+#>  4 Minn… Pine      2014-04-28  2014   118  46.2 -93.1 0100… No ice … MNPCA 
+#>  5 Minn… Pine      2017-04-01  2017    91  46.2 -93.1 0100… ""       MNPCA 
+#>  6 Minn… Pine      2018-05-01  2018   121  46.2 -93.1 0100… ""       MNPCA 
+#>  7 Minn… Minnewawa 1980-04-20  1980   111  46.7 -93.3 0100… ""       MNPCA 
+#>  8 Minn… Minnewawa 1981-04-06  1981    96  46.7 -93.3 0100… ""       MNPCA 
+#>  9 Minn… Minnewawa 1982-04-25  1982   115  46.7 -93.3 0100… ""       MNPCA 
+#> 10 Minn… Minnewawa 1983-04-24  1983   114  46.7 -93.3 0100… ""       MNDNR…
 #> # … with 10,251 more rows
 ```

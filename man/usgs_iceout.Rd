@@ -16,8 +16,8 @@ for New England
 \item \code{name} <chr> (short lake namne)
 \item \code{long_name} <chr> (long lake name)
 \item \code{lat}/\code{lon} <dbl> (coordinates)
-\item \code{year} <Date> (ice-out year)
-\item \code{doy} <Date> (ice-out day of year)
+\item \code{year} <int> (ice-out year)
+\item \code{doy} <int> (ice-out day of year)
 \item \code{date} <Date> (ice-out date)
 \item \code{observer} <chr> (recording person/institution)
 }
