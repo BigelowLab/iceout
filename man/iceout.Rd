@@ -3,11 +3,25 @@
 \name{iceout}
 \alias{iceout}
 \alias{umoos}
-\title{iceout-package}
+\alias{iceout-package}
+\title{Retrieve and Process 'Ice-out' Data for New England and Minnesota Inland Bodies of Water}
 \description{
-Provides convenient access to New England iceout data from \url{https://me.water.usgs.gov/iceout_data}.
+\if{html}{
+\figure{iceout-logo.png}{options: width="25\%" valign="top" align="right" style="padding-left:10px" alt="Figurre: iceout logo"}
+}
+\if{latex}{
+\figure{iceout-logo.png}{options: width=10cm}
+}
+Lake ice-out dates, or the dates of ice break-up, are the annual dates in spring
+when winter ice cover leaves a lake. Methods are provides to enable convenient access to
+New England iceout data from the \href{https://me.water.usgs.gov/iceout_data}{USGS} and Minnesota iceout data from
+the \href{https://www.dnr.state.mn.us/ice_out/index.html?year=1843}{MDNR} along with
+extra Maine state data from \href{https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml}{MDACF}.
 }
 \seealso{
-\url{https://me.water.usgs.gov/iceout_data}
+\itemize{
+\item \url{https://me.water.usgs.gov/iceout_data};
+\item \url{https://www.dnr.state.mn.us/ice_out/index.html?year=1843};
+\item \url{https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml}
 }
-
+}

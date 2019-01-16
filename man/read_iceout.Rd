@@ -15,4 +15,12 @@ a list of parsed iceout datasets
 \description{
 Read the prepared iceout data
 }
-
+\seealso{
+Other dataset builders: \code{\link{fetch_all}},
+  \code{\link{iceout_path}}, \code{\link{parse_all}},
+  \code{\link{parse_iceout}},
+  \code{\link{read_maine_iceout_data}},
+  \code{\link{read_mn_iceout_data}},
+  \code{\link{read_sites}}
+}
+\concept{dataset builders}

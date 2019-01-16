@@ -1,0 +1,172 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.retina=2,
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  message = FALSE,
+  warning = FALSE
+)
+```
+<img src="man/figures/iceout-logo.png" width="25%" />
+
+# iceout
+
+Retrieve and Process 'Ice-out' Data for New England and Minnesota Inland Bodies of Water
+
+## Description
+
+Lake ice-out dates, or the dates of ice break-up, are the annual dates in spring when winter ice cover leaves a lake. Methods are provides to enable convenient access to New England iceout data from the [USGS](https://me.water.usgs.gov/iceout_data) and Minnesota iceout data from the [MDNR](https://www.dnr.state.mn.us/ice_out/index.html?year=1843) along with extra Maine state data from [MDACF](https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml).
+
+## Contents
+
+The following functions are provided:
+
+- `fetch_all`:	Fetch all of the data
+- `iceout`:	iceout-package
+- `iceout_path`:	Retrieve the data path for the package data
+- `iceout_uri`:	Retrieve the URI for online data access
+- `me_iceout`:	Maine Bureau of Parks & Lands State Ice-out Data
+- `parse_all`:	Parse one or more sites
+- `parse_iceout`:	Parse a single iceout file
+- `plot_iceout`:	Plot a single iceout dataset
+- `read_iceout`:	Read the prepared iceout data
+- `read_maine_iceout_data`:	Read Maine Bureau of Parks & Lands State Ice-out Data
+- `read_mn_iceout_data`:	Read Minnesota Department of Natural Resources State Ice-out Data
+- `read_sites`:	Read the iceout_sites file that provides name, longname and location data
+
+The following datasets are provided:
+
+- `me_iceout`: Maine state-level data (2003-present) (use via `data(me_iceout)`)
+- `mn_iceout`: Minnesota state-level data (1843-present) (use-via `data(mn_iceout)`)
+- `usgs_iceout`: USGS Lake Ice-Out Data for New England (1807-2005) (use-via `data(usgs_iceout)`)
+
+## Installation
+
+You can install the development version of `iceout` via:
+
+```{r install-ex, eval=FALSE}
+devtools::install_github("hrbrmstr/iceout") # this fork
+# or
+devtools::install_github("BigelowLab/iceout") # the original
+```
+
+## Usage
+
+```{r lib-ex}
+library(iceout)
+library(tidyverse)
+
+# current version
+packageVersion("iceout")
+```
+
+### USGS Data
+
+```{r usgs}
+data(usgs_iceout)
+
+usgs_iceout
+```
+
+### Maine state curated data
+
+```{r me}
+data(me_iceout)
+
+me_iceout
+```
+
+### Minnesota state curated data
+
+```{r mn}
+data(mn_iceout)
+
+mn_iceout
+```
+
+### Visualization
+
+USGS
+
+```{r usgs-vis}
+plot_iceout("usgs", "New Hampshire", "First.Conn")
+```
+
+Maine-curated
+
+```{r maine-vis}
+plot_iceout("me", "Maine", "Long Pond", town = "Belgrade")
+```
+
+Minnesota-curated
+
+```{r mn-vis}
+plot_iceout("mn", "Minnesota", "Minnewaska")
+```
+
+### Exploring USGS Data
+
+Where are the USGS study lakes?
+
+```{r usgs-explore-01, fig.width=6.5, fig.height=6.5}
+library(ggrepel)
+library(hrbrthemes) # requires github/hrbrmstr/hrbrthemes ?(for the dark theme)
+library(worldtilegrid) # requires github/hrbrmstr/worldtilegrid (for the theme cleaner)
+
+# get ME+NH+MASS map
+maps::map("state", ".", exact = FALSE, plot = FALSE, fill = TRUE) %>%
+  fortify() %>%
+  filter(region %in%  c("maine", "new hampshire", "massachusetts")) %>%
+  as_tibble() -> st
+
+ggplot() +
+  geom_polygon(
+    data = st, aes(long, lat, group=group),
+    fill = ft_cols$slate, color = "white", size = 0.125
+  ) +
+  geom_label_repel(
+    data = distinct(usgs_iceout, state, body_name, lon, lat), 
+    aes(lon, lat, label=body_name), size=3
+  ) +
+  coord_quickmap() +
+  theme_ft_rc(grid="") +
+  worldtilegrid::theme_enhance_wtg()
+```
+
+```{r usgs-explore-02}
+filter(usgs_iceout, body_name == "Rangeley") %>% 
+  pull(lat) %>% 
+  unique()  %>% 
+  round(2) -> focused_lat
+
+filter(usgs_iceout, lat >= focused_lat) %>% 
+  mutate(
+    dm = sprintf(
+      "2020-%02s-%02s", # use a leap year
+      lubridate::month(date),
+      lubridate::day(date)
+    ),
+    dm = as.Date(dm)
+  )%>% 
+  ggplot(aes(date, dm, group=body_name, color=body_name)) +
+  geom_smooth(method = 'loess', size=0.25, se = FALSE) +
+  geom_point(size=0.75, alpha=1/3) +
+  labs(
+    x = NULL, y = "Ice-out Month/Day", color = NULL,
+    title = sprintf(
+      "Ice-out Trends for lakes at latitude %s and higher", focused_lat
+    )
+  ) +
+  theme_ft_rc(grid="Y")
+```
+

@@ -17,4 +17,12 @@ list of iceout metadata and data in \code{form} form
 \description{
 Parse a single iceout file
 }
-
+\seealso{
+Other dataset builders: \code{\link{fetch_all}},
+  \code{\link{iceout_path}}, \code{\link{parse_all}},
+  \code{\link{read_iceout}},
+  \code{\link{read_maine_iceout_data}},
+  \code{\link{read_mn_iceout_data}},
+  \code{\link{read_sites}}
+}
+\concept{dataset builders}
