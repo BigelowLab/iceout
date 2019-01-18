@@ -5,14 +5,13 @@
 
 # iceout
 
-Retrieve and Process ‘Ice-out’ Data for New England and Minnesota Inland
-Bodies of Water
+Retrieve and Process ‘Ice-out’ Data for Global Inland bodies of Water
 
 ## Description
 
-Lake ice-out dates, or the dates of ice break-up, are the annual dates
-in spring when winter ice cover leaves a lake. Methods are provides to
-enable convenient access to New England iceout data from the
+Ice-out dates, or the dates of ice break-up, are the annual dates in
+spring when winter ice cover leaves an inland body of water Methods are
+provides to enable convenient access to New England iceout data from the
 [USGS](https://me.water.usgs.gov/iceout_data) and Minnesota iceout data
 from the
 [MDNR](https://www.dnr.state.mn.us/ice_out/index.html?year=1843) along

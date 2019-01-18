@@ -1,7 +1,7 @@
 Package: iceout
-Title: Retrieve and Process 'Ice-out' Data for New England and Minnesota Inland Bodies of Water
-Description: Lake ice-out dates, or the dates of ice break-up, are the annual dates in spring
-    when winter ice cover leaves a lake. Methods are provides to enable convenient access to 
+Title: Retrieve and Process 'Ice-out' Data for Global Inland bodies of Water
+Description: Ice-out dates, or the dates of ice break-up, are the annual dates in spring
+    when winter ice cover leaves an inland body of water. Methods are provides to enable convenient access to 
     New England iceout data from
     <https://me.water.usgs.gov/iceout_data> and Minnesota iceout data from 
     <https://www.dnr.state.mn.us/ice_out/index.html?year=1843> along with 
@@ -22,9 +22,13 @@ Imports:
     lubridate,
     httr
 Encoding: UTF-8
-Maintainer: Ben Tupper <btupper@bigelow.org>
-Author: Ben Tupper <btupper@bigelow.org>
+Authors@R: c(
+      person("Bob", "Rudis", email = "bob@rud.is", role = c("aut"),
+             comment = c(ORCID = "0000-0001-5670-2640")),
+      person("Ben", "Tupper", email = "btupper@bigelow.org", role = c("aut", "cre"))
+    )
 License: MIT + file LICENSE
+Maintainer: Bob Rudis <bob@rud.is>
 Collate:
     iceout-package.R
     aaa.R
