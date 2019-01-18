@@ -55,7 +55,7 @@ library(tidyverse)
 
 # current version
 packageVersion("iceout")
-#> [1] '0.1.0'
+## [1] '0.1.0'
 ```
 
 ### NSIDC Data
@@ -66,29 +66,29 @@ packageVersion("iceout")
 data(nsidc_iceout)
 
 nsidc_iceout
-#> # A tibble: 35,918 x 37
-#>    lakecode lakename lakeorriver season iceon_year iceon_month iceon_day
-#>    <chr>    <chr>    <chr>       <chr>       <dbl>       <dbl>     <dbl>
-#>  1 ARAI1    Lake Su… L           1443-…       1443          12         8
-#>  2 ARAI1    Lake Su… L           1444-…       1444          11        23
-#>  3 ARAI1    Lake Su… L           1445-…       1445          12         1
-#>  4 ARAI1    Lake Su… L           1446-…       1446          12         2
-#>  5 ARAI1    Lake Su… L           1447-…       1447          11        30
-#>  6 ARAI1    Lake Su… L           1448-…       1448          12         8
-#>  7 ARAI1    Lake Su… L           1449-…       1449          12        13
-#>  8 ARAI1    Lake Su… L           1450-…       1450          12         8
-#>  9 ARAI1    Lake Su… L           1451-…       1451          12        23
-#> 10 ARAI1    Lake Su… L           1452-…       1452          11        28
-#> # … with 35,908 more rows, and 30 more variables: iceoff_year <dbl>,
-#> #   iceoff_month <dbl>, iceoff_day <dbl>, duration <dbl>, latitude <lgl>,
-#> #   longitude <lgl>, country <chr>, froze <lgl>, obs_comments <chr>,
-#> #   area_drained <lgl>, bow_comments <chr>, conductivity_us <dbl>,
-#> #   elevation <lgl>, filename <chr>, initials <chr>, inlet_streams <chr>,
-#> #   landuse_code <chr>, largest_city_population <lgl>, max_depth <lgl>,
-#> #   mean_depth <lgl>, median_depth <lgl>, power_plant_discharge <lgl>,
-#> #   secchi_depth <lgl>, shoreline <lgl>, surface_area <lgl>, state <chr>,
-#> #   iceon_date <date>, iceon_doy <dbl>, iceout_date <date>,
-#> #   iceout_doy <dbl>
+## # A tibble: 35,918 x 37
+##    lakecode lakename lakeorriver season iceon_year iceon_month iceon_day
+##    <chr>    <chr>    <chr>       <chr>       <dbl>       <dbl>     <dbl>
+##  1 ARAI1    Lake Su… L           1443-…       1443          12         8
+##  2 ARAI1    Lake Su… L           1444-…       1444          11        23
+##  3 ARAI1    Lake Su… L           1445-…       1445          12         1
+##  4 ARAI1    Lake Su… L           1446-…       1446          12         2
+##  5 ARAI1    Lake Su… L           1447-…       1447          11        30
+##  6 ARAI1    Lake Su… L           1448-…       1448          12         8
+##  7 ARAI1    Lake Su… L           1449-…       1449          12        13
+##  8 ARAI1    Lake Su… L           1450-…       1450          12         8
+##  9 ARAI1    Lake Su… L           1451-…       1451          12        23
+## 10 ARAI1    Lake Su… L           1452-…       1452          11        28
+## # … with 35,908 more rows, and 30 more variables: iceoff_year <dbl>,
+## #   iceoff_month <dbl>, iceoff_day <dbl>, duration <dbl>, latitude <lgl>,
+## #   longitude <lgl>, country <chr>, froze <lgl>, obs_comments <chr>,
+## #   area_drained <lgl>, bow_comments <chr>, conductivity_us <dbl>,
+## #   elevation <lgl>, filename <chr>, initials <chr>, inlet_streams <chr>,
+## #   landuse_code <chr>, largest_city_population <lgl>, max_depth <lgl>,
+## #   mean_depth <lgl>, median_depth <lgl>, power_plant_discharge <lgl>,
+## #   secchi_depth <lgl>, shoreline <lgl>, surface_area <lgl>, state <chr>,
+## #   iceon_date <date>, iceon_doy <dbl>, iceout_date <date>,
+## #   iceout_doy <dbl>
 
 filter(nsidc_iceout, country == "United States", state == "ME") %>%
   mutate(iceout_date = as.Date(sprintf("2020-%s-%s", iceoff_month, iceoff_day))) %>% # leap year for y axis plotting
@@ -130,20 +130,20 @@ filter(nsidc_iceout, country == "United States", state == "NY") %>%
 data(usgs_iceout)
 
 usgs_iceout
-#> # A tibble: 3,372 x 9
-#>    state body_name long_name    lon   lat  year   doy date       observer  
-#>    <chr> <chr>     <chr>      <dbl> <dbl> <dbl> <dbl> <date>     <chr>     
-#>  1 Maine Auburn    Lake Aubu… -70.2  44.1  2005   110 2005-04-20 Auburn Wa…
-#>  2 Maine Auburn    Lake Aubu… -70.2  44.1  2004   105 2004-04-14 Auburn Wa…
-#>  3 Maine Auburn    Lake Aubu… -70.2  44.1  2003   116 2003-04-26 Auburn Wa…
-#>  4 Maine Auburn    Lake Aubu… -70.2  44.1  2002    94 2002-04-04 Auburn Wa…
-#>  5 Maine Auburn    Lake Aubu… -70.2  44.1  2001   118 2001-04-28 Auburn Wa…
-#>  6 Maine Auburn    Lake Aubu… -70.2  44.1  2000    97 2000-04-06 Auburn Wa…
-#>  7 Maine Auburn    Lake Aubu… -70.2  44.1  1999    97 1999-04-07 Auburn Wa…
-#>  8 Maine Auburn    Lake Aubu… -70.2  44.1  1998    98 1998-04-08 Auburn Wa…
-#>  9 Maine Auburn    Lake Aubu… -70.2  44.1  1997   114 1997-04-24 Auburn Wa…
-#> 10 Maine Auburn    Lake Aubu… -70.2  44.1  1996   100 1996-04-09 Auburn Wa…
-#> # … with 3,362 more rows
+## # A tibble: 3,372 x 9
+##    state body_name long_name    lon   lat  year   doy date       observer  
+##    <chr> <chr>     <chr>      <dbl> <dbl> <dbl> <dbl> <date>     <chr>     
+##  1 Maine Auburn    Lake Aubu… -70.2  44.1  2005   110 2005-04-20 Auburn Wa…
+##  2 Maine Auburn    Lake Aubu… -70.2  44.1  2004   105 2004-04-14 Auburn Wa…
+##  3 Maine Auburn    Lake Aubu… -70.2  44.1  2003   116 2003-04-26 Auburn Wa…
+##  4 Maine Auburn    Lake Aubu… -70.2  44.1  2002    94 2002-04-04 Auburn Wa…
+##  5 Maine Auburn    Lake Aubu… -70.2  44.1  2001   118 2001-04-28 Auburn Wa…
+##  6 Maine Auburn    Lake Aubu… -70.2  44.1  2000    97 2000-04-06 Auburn Wa…
+##  7 Maine Auburn    Lake Aubu… -70.2  44.1  1999    97 1999-04-07 Auburn Wa…
+##  8 Maine Auburn    Lake Aubu… -70.2  44.1  1998    98 1998-04-08 Auburn Wa…
+##  9 Maine Auburn    Lake Aubu… -70.2  44.1  1997   114 1997-04-24 Auburn Wa…
+## 10 Maine Auburn    Lake Aubu… -70.2  44.1  1996   100 1996-04-09 Auburn Wa…
+## # … with 3,362 more rows
 ```
 
 ### Maine state curated data
@@ -152,20 +152,20 @@ usgs_iceout
 data(me_iceout)
 
 me_iceout
-#> # A tibble: 1,131 x 6
-#>    state town         body_name            date        year   doy
-#>    <chr> <chr>        <chr>                <date>     <int> <int>
-#>  1 Maine Jackman      Big Wood Pond        2003-05-03  2003   123
-#>  2 Maine China        China Lake           2003-04-22  2003   112
-#>  3 Maine Winthrop     Cobbossee Lake       2003-04-22  2003   112
-#>  4 Maine Gray         Crystal Lake         2003-04-21  2003   111
-#>  5 Maine Jefferson    Damariscotta Lake    2003-04-16  2003   106
-#>  6 Maine Eagle Lake   Eagle Lake           2003-05-10  2003   130
-#>  7 Maine Danforth     East Grand Lake      2003-05-10  2003   130
-#>  8 Maine Ellsworth    Ellsworth area lakes 2003-04-28  2003   118
-#>  9 Maine Embden       Embden Pond          2003-04-30  2003   120
-#> 10 Maine East Machias Gardner Lake         2003-04-27  2003   117
-#> # … with 1,121 more rows
+## # A tibble: 1,131 x 6
+##    state town         body_name            date        year   doy
+##    <chr> <chr>        <chr>                <date>     <int> <int>
+##  1 Maine Jackman      Big Wood Pond        2003-05-03  2003   123
+##  2 Maine China        China Lake           2003-04-22  2003   112
+##  3 Maine Winthrop     Cobbossee Lake       2003-04-22  2003   112
+##  4 Maine Gray         Crystal Lake         2003-04-21  2003   111
+##  5 Maine Jefferson    Damariscotta Lake    2003-04-16  2003   106
+##  6 Maine Eagle Lake   Eagle Lake           2003-05-10  2003   130
+##  7 Maine Danforth     East Grand Lake      2003-05-10  2003   130
+##  8 Maine Ellsworth    Ellsworth area lakes 2003-04-28  2003   118
+##  9 Maine Embden       Embden Pond          2003-04-30  2003   120
+## 10 Maine East Machias Gardner Lake         2003-04-27  2003   117
+## # … with 1,121 more rows
 ```
 
 ### Minnesota state curated data
@@ -174,20 +174,20 @@ me_iceout
 data(mn_iceout)
 
 mn_iceout
-#> # A tibble: 10,261 x 10
-#>    state body_name date        year   doy   lat   lon id    comments source
-#>    <chr> <chr>     <date>     <int> <int> <dbl> <dbl> <chr> <chr>    <chr> 
-#>  1 Minn… Pine      1986-04-16  1986   106  46.2 -93.1 0100… ""       MNDNR…
-#>  2 Minn… Pine      1986-04-16  1986   106  46.2 -93.1 0100… Unknown  MNDNR…
-#>  3 Minn… Pine      1998-04-04  1998    94  46.2 -93.1 0100… ""       MNDNR…
-#>  4 Minn… Pine      2014-04-28  2014   118  46.2 -93.1 0100… No ice … MNPCA 
-#>  5 Minn… Pine      2017-04-01  2017    91  46.2 -93.1 0100… ""       MNPCA 
-#>  6 Minn… Pine      2018-05-01  2018   121  46.2 -93.1 0100… ""       MNPCA 
-#>  7 Minn… Minnewawa 1980-04-20  1980   111  46.7 -93.3 0100… ""       MNPCA 
-#>  8 Minn… Minnewawa 1981-04-06  1981    96  46.7 -93.3 0100… ""       MNPCA 
-#>  9 Minn… Minnewawa 1982-04-25  1982   115  46.7 -93.3 0100… ""       MNPCA 
-#> 10 Minn… Minnewawa 1983-04-24  1983   114  46.7 -93.3 0100… ""       MNDNR…
-#> # … with 10,251 more rows
+## # A tibble: 10,261 x 10
+##    state body_name date        year   doy   lat   lon id    comments source
+##    <chr> <chr>     <date>     <int> <int> <dbl> <dbl> <chr> <chr>    <chr> 
+##  1 Minn… Pine      1986-04-16  1986   106  46.2 -93.1 0100… ""       MNDNR…
+##  2 Minn… Pine      1986-04-16  1986   106  46.2 -93.1 0100… Unknown  MNDNR…
+##  3 Minn… Pine      1998-04-04  1998    94  46.2 -93.1 0100… ""       MNDNR…
+##  4 Minn… Pine      2014-04-28  2014   118  46.2 -93.1 0100… No ice … MNPCA 
+##  5 Minn… Pine      2017-04-01  2017    91  46.2 -93.1 0100… ""       MNPCA 
+##  6 Minn… Pine      2018-05-01  2018   121  46.2 -93.1 0100… ""       MNPCA 
+##  7 Minn… Minnewawa 1980-04-20  1980   111  46.7 -93.3 0100… ""       MNPCA 
+##  8 Minn… Minnewawa 1981-04-06  1981    96  46.7 -93.3 0100… ""       MNPCA 
+##  9 Minn… Minnewawa 1982-04-25  1982   115  46.7 -93.3 0100… ""       MNPCA 
+## 10 Minn… Minnewawa 1983-04-24  1983   114  46.7 -93.3 0100… ""       MNDNR…
+## # … with 10,251 more rows
 ```
 
 ### Visualization
