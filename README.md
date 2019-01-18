@@ -5,7 +5,7 @@
 
 # iceout
 
-Retrieve and Process ‘Ice-out’ Data for Global Inland bodies of Water
+Retrieve and Process ‘Ice-out’ Data for Global Inland Bodies of Water
 
 ## Description
 

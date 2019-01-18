@@ -3,7 +3,7 @@
 \name{iceout}
 \alias{iceout}
 \alias{iceout-package}
-\title{Retrieve and Process 'Ice-out' Data for Global Inland bodies of Water}
+\title{Retrieve and Process 'Ice-out' Data for Global Inland Bodies of Water}
 \description{
 \if{html}{
 \figure{iceout-logo.png}{options: width="25\%" valign="top" align="right" style="padding-left:10px" alt="Figurre: iceout logo"}
