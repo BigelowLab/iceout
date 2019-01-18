@@ -17,36 +17,25 @@ enable convenient access to New England iceout data from the
 from the
 [MDNR](https://www.dnr.state.mn.us/ice_out/index.html?year=1843) along
 with extra Maine state data from
-[MDACF](https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml).
+[MDACF](https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml)
+a comprehensive global dataset (to 2014) from the
+[NSIDC](http://nsidc.org/data/lake_river_ice/).
 
 ## Contents
 
 The following functions are provided:
 
-  - `fetch_all`: Fetch all of the data
-  - `iceout`: iceout-package
-  - `iceout_path`: Retrieve the data path for the package data
-  - `iceout_uri`: Retrieve the URI for online data access
-  - `me_iceout`: Maine Bureau of Parks & Lands State Ice-out Data
-  - `parse_all`: Parse one or more sites
-  - `parse_iceout`: Parse a single iceout file
-  - `plot_iceout`: Plot a single iceout dataset
-  - `read_iceout`: Read the prepared iceout data
-  - `read_maine_iceout_data`: Read Maine Bureau of Parks & Lands State
-    Ice-out Data
-  - `read_mn_iceout_data`: Read Minnesota Department of Natural
-    Resources State Ice-out Data
-  - `read_sites`: Read the iceout\_sites file that provides name,
-    longname and location data
+  - `plot_iceout`: Plot a single iceout dataset (excluding data from
+    `nsidc_icout`)
 
 The following datasets are provided:
 
-  - `me_iceout`: Maine state-level data (2003-present) (use via
-    `data(me_iceout)`)
-  - `mn_iceout`: Minnesota state-level data (1843-present) (use-via
-    `data(mn_iceout)`)
-  - `usgs_iceout`: USGS Lake Ice-Out Data for New England (1807-2005)
-    (use-via `data(usgs_iceout)`)
+  - `me_iceout`: Maine Bureau of Parks & Lands State Ice-out Data
+  - `mn_iceout`: Minnesota Department of Natural Resources State Ice-out
+    Data
+  - `nsidc_iceout`: NSIDC Global Lake and River Ice Phenology Database,
+    Version 1
+  - `usgs_iceout`: USGS Lake Ice-Out Data for New England
 
 ## Installation
 
@@ -62,12 +51,79 @@ devtools::install_github("BigelowLab/iceout") # the original
 
 ``` r
 library(iceout)
+library(hrbrthemes) # devools install req
 library(tidyverse)
 
 # current version
 packageVersion("iceout")
 #> [1] '0.1.0'
 ```
+
+### NSIDC Data
+
+(the convience plotting function doesn’t work with this dataset)
+
+``` r
+data(nsidc_iceout)
+
+nsidc_iceout
+#> # A tibble: 35,918 x 37
+#>    lakecode lakename lakeorriver season iceon_year iceon_month iceon_day
+#>    <chr>    <chr>    <chr>       <chr>       <dbl>       <dbl>     <dbl>
+#>  1 ARAI1    Lake Su… L           1443-…       1443          12         8
+#>  2 ARAI1    Lake Su… L           1444-…       1444          11        23
+#>  3 ARAI1    Lake Su… L           1445-…       1445          12         1
+#>  4 ARAI1    Lake Su… L           1446-…       1446          12         2
+#>  5 ARAI1    Lake Su… L           1447-…       1447          11        30
+#>  6 ARAI1    Lake Su… L           1448-…       1448          12         8
+#>  7 ARAI1    Lake Su… L           1449-…       1449          12        13
+#>  8 ARAI1    Lake Su… L           1450-…       1450          12         8
+#>  9 ARAI1    Lake Su… L           1451-…       1451          12        23
+#> 10 ARAI1    Lake Su… L           1452-…       1452          11        28
+#> # … with 35,908 more rows, and 30 more variables: iceoff_year <dbl>,
+#> #   iceoff_month <dbl>, iceoff_day <dbl>, duration <dbl>, latitude <lgl>,
+#> #   longitude <lgl>, country <chr>, froze <lgl>, obs_comments <chr>,
+#> #   area_drained <lgl>, bow_comments <chr>, conductivity_us <dbl>,
+#> #   elevation <lgl>, filename <chr>, initials <chr>, inlet_streams <chr>,
+#> #   landuse_code <chr>, largest_city_population <lgl>, max_depth <lgl>,
+#> #   mean_depth <lgl>, median_depth <lgl>, power_plant_discharge <lgl>,
+#> #   secchi_depth <lgl>, shoreline <lgl>, surface_area <lgl>, state <chr>,
+#> #   iceon_date <date>, iceon_doy <dbl>, iceout_date <date>,
+#> #   iceout_doy <dbl>
+
+filter(nsidc_iceout, country == "United States", state == "ME") %>%
+  mutate(iceout_date = as.Date(sprintf("2020-%s-%s", iceoff_month, iceoff_day))) %>% # leap year for y axis plotting
+  ggplot(aes(iceoff_year, iceout_date)) +
+  geom_point(aes(color = lakecode), show.legend = FALSE, size = 0.25, alpha=1/4) +
+  geom_smooth(aes(group = lakecode, color = lakecode), se = FALSE, size = 0.25, show.legend = FALSE) +
+  labs(
+    x = NULL, y = "Ice-out Day", 
+    title = "Historical Ice-out Dates for Maine",
+    subtitle = "Source: Global Lake and River Ice Phenology Database, Version 1",
+    caption = "Source link: https://nsidc.org/data/G01377"
+  ) +
+  theme_ft_rc(grid="XY")
+```
+
+<img src="man/figures/README-nsidc-1.png" width="100%" />
+
+``` r
+
+filter(nsidc_iceout, country == "United States", state == "NY") %>%
+  mutate(iceout_date = as.Date(sprintf("2020-%s-%s", iceoff_month, iceoff_day))) %>% # leap year for y axis plotting
+  ggplot(aes(iceoff_year, iceout_date)) +
+  geom_point(aes(color = lakecode), show.legend = FALSE, size = 0.25, alpha=1/4) +
+  geom_smooth(aes(group = lakecode, color = lakecode), se = FALSE, size = 0.25, show.legend = FALSE) +
+  labs(
+    x = NULL, y = "Ice-out Day", 
+    title = "Historical Ice-out Dates for New York",
+    subtitle = "Source: Global Lake and River Ice Phenology Database, Version 1",
+    caption = "Source link: https://nsidc.org/data/G01377"
+  ) +
+  theme_ft_rc(grid="XY")
+```
+
+<img src="man/figures/README-nsidc-2.png" width="100%" />
 
 ### USGS Data
 

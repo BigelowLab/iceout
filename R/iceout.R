@@ -1,6 +1,7 @@
 #' Retrieve the URI for online data access
 #'
 #' @export
+#' @keywords internal
 #' @return charcater uri
 iceout_uri <- "https://me.water.usgs.gov/iceout_data"
 
@@ -9,6 +10,7 @@ iceout_uri <- "https://me.water.usgs.gov/iceout_data"
 #' @param ... path elements
 #' @return charcater path
 #' @family dataset builders
+#' @keywords internal
 #' @export
 iceout_path <- function(...){
   system.file("extdata", ..., package = "iceout")
@@ -19,6 +21,7 @@ iceout_path <- function(...){
 #' @export
 #' @param filename the fully qualified filename
 #' @family dataset builders
+#' @keywords internal
 #' @return tibble of site data
 read_sites <- function(filename = iceout_path('iceout_sites.csv')){
 	readr::read_csv(filename)
@@ -30,6 +33,7 @@ read_sites <- function(filename = iceout_path('iceout_sites.csv')){
 #' @param sites vector of site names (short names)
 #' @param dst_path the destuntion path to save the files
 #' @family dataset builders
+#' @keywords internal
 #' @return vector of 0 = success, !0 = failure
 fetch_all <- function(sites = read_sites()$name,
                       dst_path = "."){
@@ -47,6 +51,7 @@ fetch_all <- function(sites = read_sites()$name,
 #' @export
 #' @family dataset builders
 #' @param sites one or more site names (short name)
+#' @keywords internal
 #' @return list of iceout lists
 parse_all <- function(sites = read_sites()$name){
     sapply(sites,
@@ -61,6 +66,7 @@ parse_all <- function(sites = read_sites()$name){
 #' @param name the site name
 #' @param form character, just 'tibble' for now but possibly 'sf' in future
 #' @family dataset builders
+#' @keywords internal
 #' @return list of iceout metadata and data in \code{form} form
 parse_iceout <- function(name = "Auburn", form = "tibble"){
 
@@ -102,6 +108,7 @@ parse_iceout <- function(name = "Auburn", form = "tibble"){
 #' @export
 #' @param filename the name of the iceout_data.rds file
 #' @family dataset builders
+#' @keywords internal
 #' @return a list of parsed iceout datasets
 read_iceout <- function(filename = iceout_path("iceout_data.rds")){
     readRDS(filename)

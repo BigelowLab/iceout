@@ -26,3 +26,4 @@ Other dataset builders: \code{\link{iceout_path}},
   \code{\link{read_sites}}
 }
 \concept{dataset builders}
+\keyword{internal}

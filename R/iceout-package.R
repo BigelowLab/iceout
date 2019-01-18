@@ -10,14 +10,16 @@
 #' when winter ice cover leaves a lake. Methods are provides to enable convenient access to
 #' New England iceout data from the [USGS](https://me.water.usgs.gov/iceout_data) and Minnesota iceout data from
 #' the [MDNR](https://www.dnr.state.mn.us/ice_out/index.html?year=1843) along with
-#' extra Maine state data from [MDACF](https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml).
+#' extra Maine state data from [MDACF](https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml) and
+#' a comprehensive global dataset (to 2014) from the [NSIDC](http://nsidc.org/data/lake_river_ice/).
 #'
 #' @seealso
 #' - <https://me.water.usgs.gov/iceout_data>;
 #' - <https://www.dnr.state.mn.us/ice_out/index.html?year=1843>;
 #' - <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>
+#' - <http://nsidc.org/data/lake_river_ice/>
 #' @name iceout
-#' @aliases umoos iceout-package
+#' @aliases iceout-package
 #' @importFrom magrittr %>%
 #' @importFrom readr read_csv
 #' @importFrom ggplot2 ggplot xlab geom_point geom_smooth ggtitle scale_y_continuous aes labs

@@ -65,3 +65,61 @@ NULL
 #' @note Last updated 2019-01-15.
 #' @format A data frame with 3,372 rows and 9 variables
 NULL
+
+#' @title NSIDC Global Lake and River Ice Phenology Database, Version 1
+#' @description The Global Lake and River Ice Phenology Database contains
+#' freeze and thaw/breakup dates as well as other descriptive ice cover data
+#' for 865 lakes and rivers in the Northern Hemisphere. Of the 542 water
+#' bodies that have records longer than 19 years, 370 of them are in North
+#' America and 172 are in Eurasia. 249 lakes and rivers have records longer
+#' than 50 years, and 66 have records longer than 100 years. A few water
+#' bodies have data available prior to 1845. This database, with water
+#' bodies distributed around the Northern Hemisphere, allows for the
+#' analysis of broad spatial patterns as well as long-term temporal patterns.
+#'
+#' - `lakecode` <chr> ()
+#' - `lakename` <chr> ()
+#' - `lakeorriver` <chr> ()
+#' - `season` <chr> ()
+#' - `iceon_year` <dbl> ()
+#' - `iceon_month` <dbl> ()
+#' - `iceon_day` <dbl> ()
+#' - `iceoff_year` <dbl> ()
+#' - `iceoff_month` <dbl> ()
+#' - `iceoff_day` <dbl> ()
+#' - `duration` <dbl> ()
+#' - `latitude` <lgl> ()
+#' - `longitude` <lgl> ()
+#' - `country` <chr> ()
+#' - `froze` <lgl> ()
+#' - `obs_comments` <chr> ()
+#' - `area_drained` <lgl> ()
+#' - `bow_comments` <chr> ()
+#' - `conductivity_us` <dbl> ()
+#' - `elevation` <lgl> ()
+#' - `filename` <chr> ()
+#' - `initials` <chr> ()
+#' - `inlet_streams` <chr> ()
+#' - `landuse_code` <chr> ()
+#' - `largest_city_population` <lgl> ()
+#' - `max_depth` <lgl> ()
+#' - `mean_depth` <lgl> ()
+#' - `median_depth` <lgl> ()
+#' - `power_plant_discharge` <lgl> ()
+#' - `secchi_depth` <lgl> ()
+#' - `shoreline` <lgl> ()
+#' - `surface_area` <lgl> ()
+#' - `state` <chr> ()
+#' - `iceon_date` <date ()
+#' - `iceon_doy` <dbl> ()
+#' - `iceout_date` <date ()
+#' - `iceout_doy` <dbl> ()
+#'
+#' @docType data
+#' @keywords datasets
+#' @name nsidc_iceout
+#' @references <http://nsidc.org/data/lake_river_ice/>
+#' @usage data(nsidc_iceout)
+#' @note Last updated 2019-01-18.
+#' @format A data frame with 35,918 rows and 37 variables
+NULL

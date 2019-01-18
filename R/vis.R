@@ -1,6 +1,7 @@
-#' Plot a single iceout dataset
+#' Plot a single iceout dataset (excluding data from `nsidc_icout`)
 #'
 #' @export
+#' @note This function will not pull data from the `nsidc_icout` dataset.
 #' @param dataset one of "`usgs`" for the core USGS data, "`me`" for the Maine
 #'        state curated data, or "`mn`" for the Minnesota state curated data.
 #' @param state a valid state name for `dataset`

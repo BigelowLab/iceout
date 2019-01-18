@@ -15,6 +15,7 @@
 #'         `year`, `doy`
 #' @export
 #' @family dataset builders
+#' @keywords internal
 #' @examples \dontrun{
 #' me_iceout <- read_maine_iceout_data()
 #' }

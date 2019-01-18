@@ -55,6 +55,7 @@ mn_get_iceout_dates <- safely(.mn_get_iceout_dates)
 #' @return data frame (tibble) consisting of `source`, `body_name` and `iceout_date`
 #' @export
 #' @family dataset builders
+#' @keywords internal
 #' @examples \dontrun{
 #' mn_iceout <- read_mn_iceout_data()
 #' }

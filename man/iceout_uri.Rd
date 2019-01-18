@@ -14,4 +14,4 @@ charcater uri
 \description{
 Retrieve the URI for online data access
 }
-\keyword{datasets}
+\keyword{internal}

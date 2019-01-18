@@ -5,7 +5,8 @@ Description: Lake ice-out dates, or the dates of ice break-up, are the annual da
     New England iceout data from
     <https://me.water.usgs.gov/iceout_data> and Minnesota iceout data from 
     <https://www.dnr.state.mn.us/ice_out/index.html?year=1843> along with 
-    extra Maine state data from <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>.
+    extra Maine state data from <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>
+    and a comprehensive global dataset (to 2014) from the NSIDC (<http://nsidc.org/data/lake_river_ice/>).
 Version: 0.1.0
 Depends:
     R (>= 3.0)
