@@ -2,8 +2,8 @@ library(stringi)
 library(hrbrthemes)
 library(tidyverse)
 
-xdf <- read_csv("~/Data/liag_freeze_thaw_table.csv.gz", na = c("-999"))
-cdf <- read_csv("~/Data/liag_physical_character_table.csv.gz", na = c("-999"))
+xdf <- read_csv("extdata/liag_freeze_thaw_table.csv.gz", na = c("-999"))
+cdf <- read_csv("extdata/liag_physical_character_table.csv.gz", na = c("-999"))
 
 left_join(
   rename(xdf, obs_comments = comments),
@@ -43,12 +43,17 @@ left_join(
     power_plant_discharge == "N" ~ FALSE,
     power_plant_discharge == "-" ~ NA
   )) %>%
+  mutate(inlet_streams = case_when(
+    inlet_streams == "Y" ~ TRUE,
+    inlet_streams == "N" ~ FALSE,
+    inlet_streams == "-" ~ NA
+  )) %>%
   mutate_at(
     .vars = vars(
       latitude, longitude, area_drained, elevation, largest_city_population,
       max_depth, mean_depth, median_depth, secchi_depth, shoreline, surface_area
     ),
-    .funs = function(x) { x[x == -999] <- NA }
+    .funs = function(x) { x[x == -999] <- NA ; x }
   ) %>%
   glimpse() -> nsidc_iceout
 

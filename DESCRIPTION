@@ -1,44 +1,41 @@
 Package: iceout
-Title: Retrieve and Process 'Ice-out' Data for Global Inland Bodies of Water
-Description: Ice-out dates, or the dates of ice break-up, are the annual dates in spring
-    when winter ice cover leaves an inland body of water. Methods are provides to enable convenient access to 
-    New England iceout data from
-    <https://me.water.usgs.gov/iceout_data> and Minnesota iceout data from 
-    <https://www.dnr.state.mn.us/ice_out/index.html?year=1843> along with 
-    extra Maine state data from <https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>
-    and a comprehensive global dataset (to 2014) from the NSIDC (<http://nsidc.org/data/lake_river_ice/>).
+Title: Freeze/Thaw Phenology Data of Global Lake and River Ice
+Description: #' The term phenology in the data set title refers to the seasonal phenomenon of 
+    the freezing and thawing of lake and river ice (also known as 'ice-in'/'ice-out' and 
+    'ice-on'/'ice-off' data. Ice-out dates, or the dates of ice break-up, are the 
+    annual dates in spring when winter ice cover leaves an inland body of water. 
+    Methods are provides to enable convenient access to New England iceout data from 
+    the 'USGS' (<https://me.water.usgs.gov/iceout_data>) and Minnesota iceout data from
+    the 'MDNR' (<https://www.dnr.state.mn.us/ice_out/index.html?year=1843>) along with
+    extra Maine state data from 
+    'MDACF' (<https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml>) 
+    and a comprehensive global dataset (to 2014) from the 
+    'NSIDC' (<http://nsidc.org/data/lake_river_ice/>).
 Version: 0.1.0
 Depends:
     R (>= 3.0)
 Imports:
     magrittr,
-    dplyr,
+    xml2,
+    httr,
+    rvest,
+    jsonlite,
     readr,
     ggplot2,
-    utils,
-    rvest,
-    xml2,
-    jsonlite,
-    lubridate,
-    httr
+    utils
 Encoding: UTF-8
 Authors@R: c(
       person("Bob", "Rudis", email = "bob@rud.is", role = c("aut"),
              comment = c(ORCID = "0000-0001-5670-2640")),
       person("Ben", "Tupper", email = "btupper@bigelow.org", role = c("aut", "cre"))
     )
+URL: https://github.com/hrbrmstr/iceout
+BugReports: https://github.com/hrbrmstr/iceout/issues
 License: MIT + file LICENSE
 Maintainer: Bob Rudis <bob@rud.is>
-Collate:
-    iceout-package.R
-    aaa.R
-    iceout.R
-    iceout-maine.R
-    iceout-mn.R
-    datasets.R
-    vis.R
 LazyData: true
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
-    testthat
+    testthat,
+    covr

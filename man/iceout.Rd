@@ -3,20 +3,25 @@
 \name{iceout}
 \alias{iceout}
 \alias{iceout-package}
-\title{Retrieve and Process 'Ice-out' Data for Global Inland Bodies of Water}
+\title{Freeze/Thaw Phenology Data of Global Lake and River Ice}
 \description{
 \if{html}{
-\figure{iceout-logo.png}{options: width="25\%" valign="top" align="right" style="padding-left:10px" alt="Figurre: iceout logo"}
+\figure{iceout-logo.png}{options: width="25\%" valign="top" align="right" style="padding-left:10px" alt="Figure: iceout logo"}
 }
 \if{latex}{
 \figure{iceout-logo.png}{options: width=10cm}
 }
-Ice-out dates, or the dates of ice break-up, are the annual dates in spring
-when winter ice cover leaves an inland body of water. Methods are provides to enable convenient access to
-New England iceout data from the \href{https://me.water.usgs.gov/iceout_data}{USGS} and Minnesota iceout data from
+The term phenology in the data set title refers to the seasonal phenomenon of
+the freezing and thawing of lake and river ice (also known as 'ice-in'/'ice-out' and
+'ice-on'/'ice-off' data. Ice-out dates, or the dates of ice break-up, are the
+annual dates in spring when winter ice cover leaves an inland body of water.
+Methods are provides to enable convenient access to New England iceout data from
+the \href{https://me.water.usgs.gov/iceout_data}{USGS} and Minnesota iceout data from
 the \href{https://www.dnr.state.mn.us/ice_out/index.html?year=1843}{MDNR} along with
-extra Maine state data from \href{https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml}{MDACF} and
-a comprehensive global dataset (to 2014) from the \href{http://nsidc.org/data/lake_river_ice/}{NSIDC}.
+extra Maine state data from
+\href{https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml}{MDACF}
+and a comprehensive global dataset (to 2014) from the
+\href{http://nsidc.org/data/lake_river_ice/}{NSIDC}.
 }
 \seealso{
 \itemize{
@@ -26,3 +31,4 @@ a comprehensive global dataset (to 2014) from the \href{http://nsidc.org/data/la
 \item \url{http://nsidc.org/data/lake_river_ice/}
 }
 }
+\keyword{internal}

@@ -1,44 +1,3 @@
-# get individual inland water historical iceout data
-.mn_get_iceout_dates <- function(downum) {
-
-  httr::GET(
-    url = "https://maps1.dnr.state.mn.us/cgi-bin/climatology/ice_out_by_lake.cgi",
-    query = list(
-      id = downum
-    )
-  ) -> res
-
-  httr::stop_for_status(res)
-
-  out <- httr::content(res, as = "text")
-  out <- jsonlite::fromJSON(out)
-
-  out
-
-  vals <- out[["result"]][["values"]]
-  vals[["name"]] <- out[["result"]][["name"]]
-  vals[["lat"]] <- as.numeric(out[["result"]][["lat"]])
-  vals[["lon"]] <- as.numeric(out[["result"]][["lon"]])
-  vals[["id"]] <- out[["result"]][["id"]]
-  # vals[["sentinel_lake"]] <- out[["result"]][["sentinel_lake"]]
-  vals[["state"]] <- "Minnesota"
-  vals[["date"]] <- as.Date(vals[["date"]])
-
-  vals$year <- as.integer(lubridate::year(vals$date))
-  vals$doy <- as.integer(lubridate::yday(vals$date))
-
-  vals <- vals[,c("state", "body_name", "date", "year",
-                  "doy", "lat", "lon", "id", "comments", "source")]
-
-
-  class(vals) <- c("tbl_df", "tbl", "data.frame")
-
-  vals
-
-}
-
-mn_get_iceout_dates <- safely(.mn_get_iceout_dates)
-
 #' Read Minnesota Department of Natural Resources State Ice-out Data
 #'
 #' The state of Minnesota maintains its own data (going back to 1843 and up to present-day) of
@@ -50,26 +9,77 @@ mn_get_iceout_dates <- safely(.mn_get_iceout_dates)
 #' web pages (e.g. <https://www.dnr.state.mn.us/ice_out/index.html?year=1843>) to
 #' find generate the data links to retrieve the data.
 #'
-#' @note this is really for bootstrapping the built-in data set. You are
-#'       better off doing `data(mn_iceout)` vs hitting up the MDNR servers.
-#' @return data frame (tibble) consisting of `source`, `body_name` and `iceout_date`
+#' @note You get _all_ historical records for a given MDNR id. Identifiers can
+#'       begin with a `0` so make sure this is a character.
+#' @param id `<chr>` the MDNR identifier of the body of water. See [read_mdnr_metadata()].
+#' @return data frame
+#' @family online readers
 #' @export
-#' @family dataset builders
-#' @keywords internal
-#' @examples \dontrun{
-#' mn_iceout <- read_mn_iceout_data()
+#' @examples
+#' read_minnesota_iceout_data("11030500")
+read_minnesota_iceout_data <- function(id) {
+
+  httr::GET(
+    url = "https://maps1.dnr.state.mn.us/cgi-bin/climatology/ice_out_by_lake.cgi",
+    query = list(
+      id = as.character(id)
+    )
+  ) -> res
+
+  httr::stop_for_status(res)
+
+  out <- httr::content(res, as = "text")
+  out <- jsonlite::fromJSON(out)
+
+  out
+
+  vals <- out[["result"]][["values"]]
+  vals[["body_name"]] <- out[["result"]][["name"]]
+  vals[["lat"]] <- as.numeric(out[["result"]][["lat"]])
+  vals[["lon"]] <- as.numeric(out[["result"]][["lon"]])
+  vals[["id"]] <- out[["result"]][["id"]]
+  # vals[["sentinel_lake"]] <- out[["result"]][["sentinel_lake"]]
+  vals[["state"]] <- "Minnesota"
+  vals[["date"]] <- as.Date(vals[["date"]])
+
+  vals$year <- as.integer(year(vals$date))
+  vals$doy <- as.integer(yday(vals$date))
+
+  vals <- vals[,c("body_name", "date", "state", "year", "doy",
+                  "lon", "lat", "id", "source", "comments")]
+
+  class(vals) <- c("tbl_df", "tbl", "data.frame")
+
+  vals
+
+}
+
+#' Retrieves metadata on all available Minnesota Lakes.
+#'
+#' Use this to get the `id` for [read_minnesota_iceout_data()]
+#'
+#' @return data frame
+#' @export
+#' @family online readers
+#' @examples
+#' meta <- read_mdnr_metadata()
+#' meta_u <- meta[, c("name", "lat", "lon", "id")]
+#' meta_u <- meta_u[!duplicated(meta_u),]
+#' meta_u <- meta_u[order(meta_u$name),]
+#'
+#' \dontrun{
+#' # tidyverse
+#' library(dplyr)
+#' select(meta, name, lat, lon, id) %>%
+#'   arrange(name)
 #' }
-read_mn_iceout_data <- function() {
+read_mdnr_metadata <- function() {
 
-  # get index of lakes
-  #pg <- xml2::read_html("https://www.dnr.state.mn.us/ice_out/index.html")
-
-  # get overview of the inland bodies of water
   httr::GET(
     url = "https://maps1.dnr.state.mn.us/cgi-bin/climatology/ice_out_by_year.cgi",
     query = list(
       callback = NULL,
-      year = 2018L,
+      year = as.integer(year(Sys.Date()-180)),
       `_` = as.numeric(Sys.time())*1000
     )
   ) -> res
@@ -79,38 +89,30 @@ read_mn_iceout_data <- function() {
   out <- httr::content(res, as = "text")
   out <- jsonlite::fromJSON(out)
 
-  # get all the inland bodies of watter ids
-  downums <- unique(out[["results"]][["id"]])
+  if (out$status != "OK") {
 
-  # get the historical data for each of them
-  lapply(downums, function(.x) {
-    message(.x)
-    idf <- mn_get_iceout_dates(.x)
-    if (length(idf$result)) {
-      saveRDS(idf$result, file.path("~/Data/mn/", sprintf("%s.rds", .x)))
-      idf$result
-    } else {
-      # should never get here
-      warning("ERROR DOWNLOADING")
-      NULL
-    }
-  }) -> lk_dat
+    httr::GET(
+      url = "https://maps1.dnr.state.mn.us/cgi-bin/climatology/ice_out_by_year.cgi",
+      query = list(
+        callback = NULL,
+        year = as.integer(year(Sys.Date()-360)),
+        `_` = as.numeric(Sys.time())*1000
+      )
+    ) -> res
 
+    httr::stop_for_status(res)
 
-  xdf <- do.call(rbind.data.frame, lk_dat)
+    out <- httr::content(res, as = "text")
+    out <- jsonlite::fromJSON(out)
 
-  class(xdf) <- c("tbl_df", "tbl", "data.frame")
+  }
 
-  colnames(xdf) <- c("source", "iceout_date", "comments", "body_name", "lat", "lon", "id", "sentinel_lake")
+  if (out$status != "OK") stop(out$message, call.=FALSE)
 
-  xdf[, c("body_name", "iceout_date", "source", "comments", "lat", "lon", "id", "sentinel_lake")]
+  out <- suppressMessages(readr::type_convert(out$results))
 
-  xdf
+  class(out) <- c("tbl_df", "tbl", "data.frame")
+
+  out
 
 }
-
-
-# usethis::use_data(mn_iceout, internal=FALSE, overwrite=TRUE)
-
-
-

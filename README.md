@@ -5,25 +5,34 @@
 
 # iceout
 
-Retrieve and Process ‘Ice-out’ Data for Global Inland Bodies of Water
+Freeze/Thaw Phenology Data of Global Lake and River Ice
 
 ## Description
 
-Ice-out dates, or the dates of ice break-up, are the annual dates in
-spring when winter ice cover leaves an inland body of water Methods are
-provides to enable convenient access to New England iceout data from the
+The term phenology in the data set title refers to the seasonal
+phenomenon of the freezing and thawing of lake and river ice (also known
+as ‘ice-in’/‘ice-out’ and ‘ice-on’/‘ice-off’ data. Ice-out dates, or the
+dates of ice break-up, are the annual dates in spring when winter ice
+cover leaves an inland body of water. Methods are provides to enable
+convenient access to New England iceout data from the
 [USGS](https://me.water.usgs.gov/iceout_data) and Minnesota iceout data
 from the
 [MDNR](https://www.dnr.state.mn.us/ice_out/index.html?year=1843) along
 with extra Maine state data from
 [MDACF](https://www.maine.gov/dacf/parks/water_activities/boating/ice_out06.shtml)
-a comprehensive global dataset (to 2014) from the
+and a comprehensive global dataset (to 2014) from the
 [NSIDC](http://nsidc.org/data/lake_river_ice/).
 
 ## Contents
 
 The following functions are provided:
 
+  - `read_maine_iceout_data`: Read Maine Bureau of Parks & Lands State
+    Ice-out Data for a Given Year
+  - `read_mdnr_metadata`: Retrieves metadata on all available Minnesota
+    Lakes.
+  - `read_minnesota_iceout_data`: Read Minnesota Department of Natural
+    Resources State Ice-out Data
   - `plot_iceout`: Plot a single iceout dataset (excluding data from
     `nsidc_icout`)
 
@@ -60,7 +69,7 @@ packageVersion("iceout")
 
 ### NSIDC Data
 
-(the convience plotting function doesn’t work with this dataset)
+(NOTE: the convience plotting function doesn’t work with this dataset)
 
 ``` r
 data(nsidc_iceout)
@@ -80,16 +89,46 @@ nsidc_iceout
 ##  9 ARAI1    Lake Su… L           1451-…       1451          12        23
 ## 10 ARAI1    Lake Su… L           1452-…       1452          11        28
 ## # … with 35,908 more rows, and 30 more variables: iceoff_year <dbl>,
-## #   iceoff_month <dbl>, iceoff_day <dbl>, duration <dbl>, latitude <lgl>,
-## #   longitude <lgl>, country <chr>, froze <lgl>, obs_comments <chr>,
-## #   area_drained <lgl>, bow_comments <chr>, conductivity_us <dbl>,
-## #   elevation <lgl>, filename <chr>, initials <chr>, inlet_streams <chr>,
-## #   landuse_code <chr>, largest_city_population <lgl>, max_depth <lgl>,
-## #   mean_depth <lgl>, median_depth <lgl>, power_plant_discharge <lgl>,
-## #   secchi_depth <lgl>, shoreline <lgl>, surface_area <lgl>, state <chr>,
+## #   iceoff_month <dbl>, iceoff_day <dbl>, duration <dbl>, latitude <dbl>,
+## #   longitude <dbl>, country <chr>, froze <lgl>, obs_comments <chr>,
+## #   area_drained <dbl>, bow_comments <chr>, conductivity_us <dbl>,
+## #   elevation <dbl>, filename <chr>, initials <chr>, inlet_streams <chr>,
+## #   landuse_code <chr>, largest_city_population <dbl>, max_depth <dbl>,
+## #   mean_depth <dbl>, median_depth <dbl>, power_plant_discharge <lgl>,
+## #   secchi_depth <dbl>, shoreline <dbl>, surface_area <dbl>, state <chr>,
 ## #   iceon_date <date>, iceon_doy <dbl>, iceout_date <date>,
 ## #   iceout_doy <dbl>
+```
 
+The NSIDC data has quite a bit of global coverage:
+
+``` r
+maps::map("world", ".", exact = FALSE, plot = FALSE, fill = TRUE) %>%
+  fortify() -> wrld
+
+ggplot() + 
+  ggalt::geom_cartogram(
+    data = wrld, map = wrld, aes(long, lat, map_id=region), 
+    fill="#3B454A",  color = "white", size = 0.125
+  ) +
+  geom_point(
+    data = distinct(nsidc_iceout, lakeorriver, longitude, latitude),
+    aes(longitude, latitude, fill = lakeorriver), 
+    size = 1.5, color = "#2b2b2b", stroke = 0.125, shape = 21
+  ) +
+  scale_fill_manual(
+    name = NULL, values = c("L"="#fdbf6f", "R"="#1f78b4"), labels=c("L" = "Lake", "R" = "River")
+  ) +
+  ggalt::coord_proj("+proj=wintri", ylim = range(nsidc_iceout$latitude, na.rm = TRUE)) +
+  ggthemes::theme_map() +
+  theme(legend.position = c(0.375, 0.1))
+```
+
+<img src="man/figures/README-ns-idc-coverage-1.png" width="100%" />
+
+Let’s look at some US data:
+
+``` r
 filter(nsidc_iceout, country == "United States", state == "ME") %>%
   mutate(iceout_date = as.Date(sprintf("2020-%s-%s", iceoff_month, iceoff_day))) %>% # leap year for y axis plotting
   ggplot(aes(iceoff_year, iceout_date)) +
@@ -104,10 +143,9 @@ filter(nsidc_iceout, country == "United States", state == "ME") %>%
   theme_ft_rc(grid="XY")
 ```
 
-<img src="man/figures/README-nsidc-1.png" width="100%" />
+<img src="man/figures/README-nsidc-us-me-1.png" width="100%" />
 
 ``` r
-
 filter(nsidc_iceout, country == "United States", state == "NY") %>%
   mutate(iceout_date = as.Date(sprintf("2020-%s-%s", iceoff_month, iceoff_day))) %>% # leap year for y axis plotting
   ggplot(aes(iceoff_year, iceout_date)) +
@@ -122,7 +160,7 @@ filter(nsidc_iceout, country == "United States", state == "NY") %>%
   theme_ft_rc(grid="XY")
 ```
 
-<img src="man/figures/README-nsidc-2.png" width="100%" />
+<img src="man/figures/README-nsidc-us-ny-1.png" width="100%" />
 
 ### USGS Data
 

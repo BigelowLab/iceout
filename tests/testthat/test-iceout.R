@@ -1,4 +1,12 @@
-context("Dataset integrity")
+context("Online readers work")
+test_that("Datasets are unmangled", {
+  expect_is(read_maine_iceout_data(2017), "data.frame")
+  x <- read_mdnr_metadata()
+  expect_is(x, "data.frame")
+  expect_is(read_minnesota_iceout_data(x$id[100]), "data.frame")
+})
+
+context("Internal dataset integrity")
 test_that("Datasets are unmangled", {
 
   tmpenv <- new.env()

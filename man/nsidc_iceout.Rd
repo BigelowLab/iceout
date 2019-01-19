@@ -18,44 +18,59 @@ than 50 years, and 66 have records longer than 100 years. A few water
 bodies have data available prior to 1845. This database, with water
 bodies distributed around the Northern Hemisphere, allows for the
 analysis of broad spatial patterns as well as long-term temporal patterns.
+This dataset was generated via the dataset builders. The dataset builder source can be
+found at the \code{URL} in the package \code{DESCRIPTION}.
+
+\if{html}{
+\figure{README-ns-idc-coverage-1.png}{options: width="100\%" style="padding-left:10px" alt="Figure: nsidc map"}
+}
+\if{latex}{
+\figure{README-ns-idc-coverage-1.png}{options: width=10cm}
+}
+
+Full descriptions for the following fields can be found at the
+\href{https://nsidc.org/data/g01377?qt-data_set_tabs=2#qt-data_set_tabs}{NSIDC}.
 \itemize{
-\item \code{lakecode} <chr> ()
-\item \code{lakename} <chr> ()
-\item \code{lakeorriver} <chr> ()
-\item \code{season} <chr> ()
-\item \code{iceon_year} <dbl> ()
-\item \code{iceon_month} <dbl> ()
-\item \code{iceon_day} <dbl> ()
-\item \code{iceoff_year} <dbl> ()
-\item \code{iceoff_month} <dbl> ()
-\item \code{iceoff_day} <dbl> ()
-\item \code{duration} <dbl> ()
-\item \code{latitude} <lgl> ()
-\item \code{longitude} <lgl> ()
-\item \code{country} <chr> ()
-\item \code{froze} <lgl> ()
-\item \code{obs_comments} <chr> ()
-\item \code{area_drained} <lgl> ()
-\item \code{bow_comments} <chr> ()
-\item \code{conductivity_us} <dbl> ()
-\item \code{elevation} <lgl> ()
-\item \code{filename} <chr> ()
-\item \code{initials} <chr> ()
-\item \code{inlet_streams} <chr> ()
-\item \code{landuse_code} <chr> ()
-\item \code{largest_city_population} <lgl> ()
-\item \code{max_depth} <lgl> ()
-\item \code{mean_depth} <lgl> ()
-\item \code{median_depth} <lgl> ()
-\item \code{power_plant_discharge} <lgl> ()
-\item \code{secchi_depth} <lgl> ()
-\item \code{shoreline} <lgl> ()
-\item \code{surface_area} <lgl> ()
-\item \code{state} <chr> ()
-\item \code{iceon_date} <date ()
-\item \code{iceon_doy} <dbl> ()
-\item \code{iceout_date} <date ()
-\item \code{iceout_doy} <dbl> ()
+\item \code{lakecode} <chr> (NSIDC lake code)
+\item \code{lakename} <chr> (NSIDC lake name)
+\item \code{lakeorriver} <chr> (\code{L} for lake)
+\item \code{season} <chr> (season identifier)
+\item \code{iceon_year} <dbl> (ice-on year)
+\item \code{iceon_month} <dbl> (ice-on month)
+\item \code{iceon_day} <dbl> (ice-on day)
+\item \code{iceoff_year} <dbl> (ice-off year)
+\item \code{iceoff_month} <dbl> (ice-off month)
+\item \code{iceoff_day} <dbl> (ice-off day)
+\item \code{duration} <dbl> (duration of ice-cover indays)
+\item \code{latitude} <dbl> (latitude in decimal degrees.)
+\item \code{longitude} <dbl> (longitude in decimal degrees.)
+\item \code{country} <chr> (me of the country in which the lake or river resides; Possible values
+include \code{Canada}, \code{China}, \code{Finland}, \code{Germany}, \code{Hungary}, \code{Japan}, \code{Norway}, \code{Russia},
+\code{Russia-Estonia}, \code{Sweden}, \code{Switzerland}, and \code{United States})
+\item \code{froze} <lgl> (did the body of water freeze this season?)
+\item \code{obs_comments} <chr> (comments by the observer)
+\item \code{area_drained} <lgl> (has the area been drained)
+\item \code{bow_comments} <chr> (additional comments about this body of water)
+\item \code{conductivity_us} <dbl> (conductivity of the water in microsiemens per centimeter)
+\item \code{elevation} <dbl> (elevation of lake or river above sea level in meters)
+\item \code{filename} <chr> (source filename)
+\item \code{initials} <chr> (observer intials)
+\item \code{inlet_streams} <lgl> (does the lake have an inlet stream?)
+\item \code{landuse_code} <chr> (landuse code of the area surrounding the lake or river. e
+very code that applies to a lake or river is listed in this field.)
+\item \code{largest_city_population} <dbl> (population of largest city on lake)
+\item \code{max_depth} <dbl> (aximum depth of lake or river in meters)
+\item \code{mean_depth} <dbl> (mean depth of lake or river in meters)
+\item \code{median_depth} <dbl> (median depth of lake or river in meters)
+\item \code{power_plant_discharge} <lgl> (does a power plant discharges into the lake or river?)
+\item \code{secchi_depth} <dbl> (depth the \href{https://en.wikipedia.org/wiki/Secchi_disk}{secchi disk} reached in meters)
+\item \code{shoreline} <dbl> (shoreline length of lake in kilometers)
+\item \code{surface_area} <dbl> (surface area of lake or river in square kilometers)
+\item \code{state} <chr> (nName of the state in which the lake or river resides, if applicable.)
+\item \code{iceon_date} <Date> (ice-on date)
+\item \code{iceon_doy} <dbl> (ice-on day of year)
+\item \code{iceout_date} <Date> (ice-out date)
+\item \code{iceout_doy} <dbl> (ice-out day of year)
 }
 }
 \note{
