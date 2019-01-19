@@ -1,6 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+[![Travis build
+status](https://travis-ci.org/hrbrmstr/iceout.svg?branch=master)](https://travis-ci.org/hrbrmstr/iceout)
+[![Coverage
+status](https://codecov.io/gh/hrbrmstr/iceout/branch/master/graph/badge.svg)](https://codecov.io/github/hrbrmstr/iceout?branch=master)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/iceout)](https://cran.r-project.org/package=iceout)
+
 <img src="man/figures/iceout-logo.png" width="25%" />
 
 # iceout
@@ -313,3 +320,20 @@ filter(usgs_iceout, lat >= focused_lat) %>%
 ```
 
 <img src="man/figures/README-usgs-explore-02-1.png" width="100%" />
+
+## iceout Metrics
+
+``` r
+cloc::cloc_pkg_md()
+```
+
+| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines | (%) |
+| :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | --: |
+| R    |       13 | 0.93 | 384 | 0.78 |         122 | 0.69 |      346 | 0.8 |
+| Rmd  |        1 | 0.07 | 110 | 0.22 |          55 | 0.31 |       89 | 0.2 |
+
+## Code of Conduct
+
+Please note that the ‘iceout’ project is released with a [Contributor
+Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
+you agree to abide by its terms.
