@@ -1,3 +1,4 @@
+^CODE_OF_CONDUCT\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
@@ -6,7 +7,4 @@
 ^CONDUCT\.md$
 ^docs$
 ^codecov\.yml$
-^README\.Rmd$
-^.*\.Rproj$
-^\.Rproj\.user$
 ^build$

@@ -10,7 +10,8 @@ data(mn_iceout)
 }
 \description{
 This dataset contains the Minnesota state-level historical data
-generated via \code{\link[=read_mn_iceout_data]{read_mn_iceout_data()}}.
+generated via the dataset builders. The dataset builder source can be
+found at the \code{URL} in the package \code{DESCRIPTION}.
 \itemize{
 \item \code{state} <chr> (always Minnesota)
 \item \code{body_name} <chr> (inland body of water name)

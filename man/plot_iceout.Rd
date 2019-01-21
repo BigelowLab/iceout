@@ -2,7 +2,7 @@
 % Please edit documentation in R/vis.R
 \name{plot_iceout}
 \alias{plot_iceout}
-\title{Plot a single iceout dataset}
+\title{Plot a single iceout dataset (excluding data from \code{nsidc_icout})}
 \usage{
 plot_iceout(dataset = c("usgs", "me", "mn"), state = "Maine",
   body_name = "Auburn", town = NULL, method = "loess", formula = y
@@ -27,7 +27,10 @@ this parameter must be specified.}
 ggplot2 object
 }
 \description{
-Plot a single iceout dataset
+Plot a single iceout dataset (excluding data from \code{nsidc_icout})
+}
+\note{
+This function will not pull data from the \code{nsidc_icout} dataset.
 }
 \examples{
 plot_iceout("usgs", "New Hampshire", "First.Conn")

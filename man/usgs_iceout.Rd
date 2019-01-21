@@ -10,7 +10,8 @@ data(usgs_iceout)
 }
 \description{
 This dataset contains the USGS historical ice-out data
-for New England
+for New England generated via the dataset builders. The dataset builder source can be
+found at the \code{URL} in the package \code{DESCRIPTION}.
 \itemize{
 \item \code{state} <chr> (state lake is in)
 \item \code{body_name} <chr> (short lake namne)
